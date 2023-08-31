@@ -1,0 +1,32 @@
+#scrollBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    padding: 0;
+    background-color: rgba(79, 46, 232, 0.3);
+    color: #fff;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.core{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4F2EE8;
+    width: 27px;
+    height: 27px;
+    border: none;
+    border-radius: 50%;
+}
+.logo{
+    width: 12px;
+    height: 19px;
+    fill: white;
+    display: block;
+  }
