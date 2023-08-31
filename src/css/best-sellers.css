@@ -1,5 +1,7 @@
 .div-content {
     gap: 18px;
+    padding: 0%;
+   margin-left: 0%;
 }
  /* text styles */
 .title {
@@ -10,6 +12,7 @@ line-height: 52px;
 letter-spacing: -0.04em;
 text-align: left;
 color: rgba(17, 17, 17, 1);
+margin-left: 49px;
 }
 .title-span {
     color: rgba(79, 46, 232, 1);
@@ -22,6 +25,8 @@ line-height: 24px;
 letter-spacing: 0.03em;
 text-align: left;
 color: rgba(180, 175, 175, 1);
+text-transform: uppercase;
+margin-left: 49px;
 }
 
 .text{
@@ -50,14 +55,16 @@ color: rgba(180, 175, 175, 1);
     list-style: none;
 } 
 .list-card {
-
+    display: flex;
+    gap: 24px;
 }
 .li-card {
-    display: flex;
-    gap:8px;
+    /* display: flex; */
+    gap: 8px;
 }
  .div-text {
-    
+    /* flex-direction: column; */
+    /* display: flex; */
  }
 
 
@@ -69,6 +76,7 @@ height: 46px;
 border-radius: 40px;
 gap: 10px;
     border: 2px solid rgba(79, 46, 232, 1);
+    margin-left: 910px;
 }
 .btn-text {
 font-family: DM Sans;
