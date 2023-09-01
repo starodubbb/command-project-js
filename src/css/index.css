@@ -1,1 +1,30 @@
+@import './fonts.css';
+@import './reset.css';
 @import './_common.css';
+
+:root {
+  /* FONTS */
+  --main-font: 'DM Sans';
+
+  /* BG color */
+  --light-bg-cl: #d0d0d0;
+  --dark-bg-cl: #202024;
+
+  /* Text color */
+  --light-theme-main-txt-cl: #111111;
+  --dark-theme-main-txt-cl: #ffffff;
+  --secondary-txt-cl: #b4afaf;
+  --categories-txt-cl: rgba(17, 17, 17, 0.6);
+
+  --light-theme-accent-cl: #4f2ee8;
+  --dark-theme-accent-cl: #eac645;
+
+  --btn-cl: #4f2ee8;
+
+  /* icon */
+  --fill-cl: #4f2ee8;
+
+  /* card set */
+  --item: 1;
+  --len: 0px;
+}

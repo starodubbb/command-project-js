@@ -1,1 +1,68 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+
+.section {
+  background-color: aqua;
+
+  padding-top: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 80px;
+}
+
+@media only screen and (min-width: 768px) {
+  .section {
+    padding-bottom: 100px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .section {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+.btn {
+  display: block;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+/* card-set */
+
+.card-set {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  column-gap: var(--len);
+  row-gap: 40px;
+}
+@media only screen and (min-width: 768px) {
+  .card-set {
+    --len: 25px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .card-set {
+    --len: 24px;
+  }
+}
+
+.card-set-item {
+  width: calc((100% - var(--len) * (var(--item) - 1)) / var(--item));
+}
+@media only screen and (min-width: 768px) {
+  .card-set-item {
+    --item: 3;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .card-set-item {
+    --item: 5;
+  }
+}
