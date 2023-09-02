@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.querySelectorAll('.book-item');
               bookBestItemElements.forEach(bookBestItem => {
                 bookBestItem.addEventListener('click', () => {
-                  const bookId = bookBestItem.id;
-                  openModal(bookId);
+                //   const bookId = bookBestItem.id;
+                //   openModal(bookId);
                 });
               });
 
