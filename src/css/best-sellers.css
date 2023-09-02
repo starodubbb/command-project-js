@@ -1,6 +1,7 @@
 
 .link{
   list-style: none;
+  text-decoration: none;
 }
 
 .span-books{        
@@ -92,6 +93,12 @@
   }
 }
 
+.ellipsis{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 150px;
+}
 .book-author{
   color:var(--secondary-txt-cl); 
   font-size: 12px;

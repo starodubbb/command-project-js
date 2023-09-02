@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function createBookItemElement(book) {
   const bookItemElement = document.createElement('li');
   bookItemElement.classList.add('book-item');
+  bookItemElement.classList.add('link');
   bookItemElement.id = `${book._id}`;
 
   const bookImageElement = document.createElement('img');
@@ -96,11 +97,13 @@ function createBookItemElement(book) {
   const bookTitleElement = document.createElement('h3');
   bookTitleElement.textContent = book.title;
   bookTitleElement.classList.add('book-title');
+  bookTitleElement.classList.add('ellipsis');
   bookItemElement.appendChild(bookTitleElement);
 
   const bookAuthorElement = document.createElement('p');
   bookAuthorElement.textContent = book.author;
   bookAuthorElement.classList.add('book-author');
+  bookAuthorElement.classList.add('ellipsis');
   bookItemElement.appendChild(bookAuthorElement);
 
   return bookItemElement;
