@@ -10,5 +10,16 @@
     <clipPath id="a">
       <path fill="#fff" d="M0 0h24v24H0z"/>
     </clipPath>
+    <symbol id="icon-logo" viewBox="0 0 32 32">
+<path fill="#d0d0d0" style="fill: var(--color1, #d0d0d0)" d="M0 0h32v32h-32v-32z"></path>
+<path fill="#f6f6f6" style="fill: var(--color2, #f6f6f6)" d="M-32-32h1920v2800h-1920v-2800z"></path>
+<path fill="#fff" style="fill: var(--color3, #fff)" d="M-31-31h1918v84.333c0 5.339-4.333 9.667-9.667 9.667h-1898.667c-5.339 0-9.667-4.328-9.667-9.667v-84.333z"></path>
+<path fill="#f6f6f6" style="fill: var(--color2, #f6f6f6)" d="M0 0l16.343 16.171 15.657 15.829v-32h-32z"></path>
+<path fill="#f6f6f6" style="fill: var(--color2, #f6f6f6)" d="M4.457 4.229l11.943 11.829 11.257 11.486h-23.2v-23.314z"></path>
+<path fill="#4f2ee8" style="fill: var(--color4, #4f2ee8)" d="M27.733 27.618l-11.943-11.829-11.257-11.486h23.2v23.314z"></path>
+<path fill="#4f2ee8" style="fill: var(--color4, #4f2ee8)" d="M9.257 9.029l13.6 13.6h-13.6v-13.6z"></path>
+<path fill="#f6f6f6" style="fill: var(--color2, #f6f6f6)" d="M9.257 9.029l13.6 13.6v-13.6h-13.6z"></path>
+<path fill="none" stroke="#111" stroke-width="2" stroke-miterlimit="4" stroke-linecap="butt" stroke-linejoin="miter" style="stroke: var(--color5, #111)" d="M-31-31h1918v84.333c0 5.339-4.333 9.667-9.667 9.667h-1898.667c-5.339 0-9.667-4.328-9.667-9.667v-84.333z"></path>
+</symbol>
   </defs>
 </svg>
