@@ -26,9 +26,15 @@
   gap: 24px;
 }
 
-.side-bar-item {
+.side-bar-btn {
+  cursor: pointer;
+  display: block;
+  border: none;
+  background-color: inherit;
+  padding: 0;
+  margin: 0;
+
   color: var(--categories-txt-cl);
   font-weight: 400;
   letter-spacing: -0.32px;
-
 }
