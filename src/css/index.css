@@ -2,6 +2,7 @@
 @import './reset.css';
 @import './_common.css';
 @import './scroll-up.css';
+@import './pop-up.css';
 
 :root {
   /* FONTS */
