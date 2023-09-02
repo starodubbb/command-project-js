@@ -1,1 +1,74 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+
+.section {
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+@media only screen and (min-width: 768px) {
+  .section {
+    padding-bottom: 100px;
+  }
+}
+
+.container {
+  min-width: 320px;
+  max-width: 375px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+    padding: 0 24px;
+  }
+}
+
+.btn {
+  display: block;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+/* card-set */
+
+.card-set {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  column-gap: var(--len);
+  row-gap: 40px;
+}
+@media only screen and (min-width: 768px) {
+  .card-set {
+    --len: 25px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .card-set {
+    --len: 24px;
+  }
+}
+
+.card-set-item {
+  width: calc((100% - var(--len) * (var(--item) - 1)) / var(--item));
+}
+@media only screen and (min-width: 768px) {
+  .card-set-item {
+    --item: 3;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .card-set-item {
+    --item: 5;
+  }
+}
