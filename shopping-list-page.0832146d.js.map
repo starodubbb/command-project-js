@@ -1,0 +1,1 @@
+{"mappings":"gfAAAA,EAAA,S","sources":["src/js/shopping-list-page.js"],"sourcesContent":["import './header.js';\nimport './scroll-up.js';\nimport './support.js';\nimport './mobile-menu.js';\nimport './service-api.js';\nimport './service-pagination-api.js';\n"],"names":["parcelRequire"],"version":3,"file":"shopping-list-page.0832146d.js.map"}
