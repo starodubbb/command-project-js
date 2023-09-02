@@ -1,85 +1,107 @@
-// import { fetchTopBooks } from './fetchTopBooks';
-import axios from 'axios';
-import debounce from 'lodash.debounce';
+// import { fetchTopBooks } from `./service-api`;
+document.addEventListener('DOMContentLoaded', function () {
+  const categoryContainer = document.querySelector('#categoryContainer');
 
-const ulBooksListTop = document.querySelector('.books-list-top');
-const ulBooksList = document.querySelector('.books-list');
-const divBooksList = document.querySelector('.books-list-title');
-let limit = 1;
+  // Отримуємо доступ до категорій книг за допомогою API
+  fetch('https://books-backend.p.goit.global/books/category-list')
+    .then(response => response.json())
+    .then(categories => {
+      categories.forEach(category => {
+        const categoryElement = document.createElement('div');
+        categoryElement.classList.add('category');
 
-const title = document.querySelector('title');
-if (title.text == 'Bookshelf') {
-  onRenderBestsellers();
-  window.addEventListener(
-    'resize',
-    debounce(() => {
-      if (ulBooksList.textContent == '') {
-        onRenderBestsellers();
-      } else return;
-    }, 250)
-  );
+        const categoryTitleElement = document.createElement('h2');
+        categoryTitleElement.textContent = category.list_name;
+        categoryTitleElement.classList.add('category-item');
+        categoryElement.appendChild(categoryTitleElement);
+
+        // Отримуємо популярні книги для кожної категорії
+        fetch(
+          `https://books-backend.p.goit.global/books/category?category=${category.list_name}`
+        )
+          .then(response => response.json())
+          .then(data => {
+            const books = data;
+
+            if (books.length > 0) {
+              const bookListElement = document.createElement('ul');
+              bookListElement.classList.add('book-list');
+
+              books.slice(0, 5).forEach(book => {
+                const bookItemElement = createBookItemElement(book);
+                bookListElement.appendChild(bookItemElement);
+              });
+
+              categoryElement.appendChild(bookListElement);
+              const bookBestItemElements =
+                document.querySelectorAll('.book-item');
+              bookBestItemElements.forEach(bookBestItem => {
+                bookBestItem.addEventListener('click', () => {
+                  const bookId = bookBestItem.id;
+                  openModal(bookId);
+                });
+              });
+
+              if (books.length > 5) {
+                const seeMoreButtonElement = document.createElement('button');
+                seeMoreButtonElement.textContent = 'See More';
+                seeMoreButtonElement.classList.add('see-more-button');
+                categoryElement.appendChild(seeMoreButtonElement);
+
+                seeMoreButtonElement.addEventListener('click', () => {
+                  const bookListElement =
+                    categoryElement.querySelector('.book-list');
+
+                  books.slice(5).forEach(book => {
+                    const bookItemElement = createBookItemElement(book);
+                    bookListElement.appendChild(bookItemElement);
+                  });
+
+                  seeMoreButtonElement.remove(); // Видалити кнопку "See More" після додавання нових книг
+                });
+              }
+            } else {
+              const noBooksMessageElement = document.createElement('p');
+              noBooksMessageElement.textContent =
+                'Немає популярних книг для цієї категорії';
+              categoryElement.appendChild(noBooksMessageElement);
+            }
+          })
+          .catch(error => {
+            console.log(
+              `Сталася помилка при отриманні даних для категорії "${category.list_name}" з API:`,
+              error
+            );
+          });
+
+        categoryContainer.appendChild(categoryElement);
+      });
+    })
+    .catch(error => {
+      console.log('Сталася помилка при отриманні даних з API:', error);
+    });
+});
+
+function createBookItemElement(book) {
+  const bookItemElement = document.createElement('li');
+  bookItemElement.classList.add('book-item');
+  bookItemElement.id = `${book._id}`;
+
+  const bookImageElement = document.createElement('img');
+  bookImageElement.src = book.book_image;
+  bookImageElement.alt = book.title;
+  bookImageElement.classList.add('book-image');
+  bookItemElement.appendChild(bookImageElement);
+
+  const bookTitleElement = document.createElement('h3');
+  bookTitleElement.textContent = book.title;
+  bookTitleElement.classList.add('book-title');
+  bookItemElement.appendChild(bookTitleElement);
+
+  const bookAuthorElement = document.createElement('p');
+  bookAuthorElement.textContent = book.author;
+  bookAuthorElement.classList.add('book-author');
+  bookItemElement.appendChild(bookAuthorElement);
+
+  return bookItemElement;
 }
-
-export function onRenderBestsellers() {
-  onLoader();
-  fetchTopBooks().then(dataBestsellers).catch();
-}
-
-function dataBestsellers(data) {
-    resizeLimit();
-    function resizeLimit() {
-        const vw = Math.max(
-          document.documentElement.clientWidth || 0,
-          window.innerWidth || 0
-        );
-        if (vw < 768) {
-          limit = 1;
-        } else if (vw < 1440) {
-          limit = 3;
-        } else {
-          limit = 5;
-        }
-      }
-      ulBooksList.innerHTML = '';
-      const dataBestsellers = data
-        .map(elem => {
-          let element1 = `<li><h2 class="books-list-title">${elem.list_name}</h2>
-        <ul class="category-top-books">`;
-          let elementArray = [];
-          for (let i = 0; i < limit; i += 1) {
-            let element = `<li><a class="books-list-link" href="">
-            <div class="thumb">
-              <img class="books-list-img" data-id="${elem.books[i]._id}" src="${elem.books[i].book_image}" alt="${elem.books[i].title}">
-            </div>
-              <div class="content">
-                <h3 class="books-list-name">${elem.books[i].title}</h3>
-                <p class="books-list-text">${elem.books[i].author}</p> 
-              </div>
-            </a>
-          </li>`;
-            elementArray.push(element);
-          }
-          let element3 = `</ul>
-          <div class="top-btn-wrapper">
-            <button data-filter="${elem.list_name}" class="list-name best-sellers-btn">see more</button>
-            </div>
-            </li>`;
-          const element2 = elementArray.join(' ');
-          return element1 + element2 + element3;
-        })
-        .join(' ');
-    
-      ulBooksListTop.innerHTML = dataBestsellers;
-    
-      const dataMarkupTitle = `<h2>Best Sellers <span>Books</span></h2>`;
-      divBooksList.innerHTML = dataMarkupTitle;
-    
-      onCategorriesBtn();
-      offLoader();
-    }
-    function onCategorriesBtn() {
-        const categorriesBtn = document.querySelectorAll('.best-sellers-btn');
-        categorriesBtn.forEach(element =>
-          element.addEventListener('click', onFiltred)
-        );
-      } 
