@@ -1,2 +1,2 @@
-import { scrollBtnFunction } from './scroll-up';
-scrollBtnFunction();
+import './pop-up.js';
+import './scroll-up.js';

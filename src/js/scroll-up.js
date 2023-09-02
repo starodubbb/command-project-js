@@ -1,14 +1,14 @@
-export async function scrollBtnFunction() {
-  const scrollButton = document.getElementById("scrollBtn");
+async function scrollBtnFunction() {
+  const scrollButton = document.getElementById('scrollBtn');
 
   function scrollFunction() {
     if (
       document.body.scrollTop > 200 ||
       document.documentElement.scrollTop > 200
     ) {
-      scrollButton.style.display = "flex";
+      scrollButton.style.display = 'flex';
     } else {
-      scrollButton.style.display = "none";
+      scrollButton.style.display = 'none';
     }
   }
 
@@ -16,8 +16,9 @@ export async function scrollBtnFunction() {
     scrollFunction();
   };
 
-  scrollButton.addEventListener("click", function() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+  scrollButton.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 
+scrollBtnFunction();
