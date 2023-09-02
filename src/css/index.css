@@ -3,6 +3,12 @@
 @import './_common.css';
 @import './scroll-up.css';
 @import './pop-up.css';
+@import './header.css';
+@import './sidebar.css';
+@import './support.css';
+@import './best-sellers.css';
+@import './shopping-list.css';
+@import './mobile-menu.css';
 
 :root {
   /* FONTS */
