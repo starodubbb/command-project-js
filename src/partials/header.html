@@ -1,47 +1,40 @@
-<header class="header">
-  <div class="header__container">
-    <div class="header__nav-logo">
-      <a href="#header" class="header__link">
-        <svg class="header__logo">
+<header class="header-book">
+  <div class="header-container">
+    <div class="header-nav-logo">
+      <a href="#header" class="header-link">
+        <svg class="header-logo">
           <use href="./img/header/logo-light.svg#icon-logo"></use>
         </svg>
-        <span class="header__logo-word">bookshelf</span>
+        <span class="header-logo-word">bookshelf</span>
       </a>
 
-      <div class="header__nav">
-        <a href="#header" class="nav__list-home current">
-          <span class="header__nav-link">home</span>
+      <div class="header-nav">
+        <a href="#header" class="nav-list-home current">
+          <span class="header-nav-link">home</span>
         </a>
-        <a href="#shopping-list-page" class="nav__list-home">
-          <span class="header__nav-link">shopping list</span>
-          <svg
-            class="header__nav-icon shopping__list-svg"
-            width="20px"
-            height="20px"
-          >
-            <use href="./img/icons/symbol-defs.svg#icon-basket"></use>
+        <a href="#shopping-list-page" class="nav-list-home">
+          <span class="header-nav-link">shopping list</span>
+          <svg class="shopping-list-svg" width="20px" height="20px">
+            <use href="./img/header/logo-light.svg#icon-cart-fill"></use>
           </svg>
         </a>
       </div>
     </div>
-    <div class="header__theme-switcher">
-      <label class="switcher header__switcher">
+    <div class="header-theme-switcher">
+      <label class="switcher header-switcher">
         <input class="switcher-input" id="theme-switcher" type="checkbox" />
         <span class="switcher-slider"></span>
       </label>
 
-      <button type="button" class="header__menu-login">
-        <img
-          srcset="./img/header/stephen.png, ./img/header/stephen@2x.png"
-          src="./img/header/stephen.png"
-          alt="user"
-          width="37"
-        />
-        <span>Hello</span>
+      <button type="button" class="header-menu-login">
+        <svg class="user-login" width="32px" height="32px">
+          <use href="./img/header/logo-light.svg#icon-user-fill"></use>
+        </svg>
+        <span class="user-text">Hello</span>
       </button>
 
-      <button class="header__burger--open" aria-expanded="false" type="button">
-        <svg class="icon__burger--open" width="28px" height="28px">
+      <button class="header-burger--open" aria-expanded="false" type="button">
+        <svg class="icon-burger--open" width="28px" height="28px">
           <use href="./img/icons/symbol-defs.svg#icon-burger-menu"></use>
         </svg>
       </button>
