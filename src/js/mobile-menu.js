@@ -1,5 +1,5 @@
-const btnMenu = document.querySelector('.js-call-menu');
-const headerMobile = document.querySelector('#header-mobile');
+const btnMenu = document.querySelector('[data-menu-button]');
+const headerMobile = document.querySelector('[data-menu]');
 
 btnMenu.onclick = function () {
   headerMobile.classList.toggle('show');

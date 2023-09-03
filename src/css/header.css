@@ -1,5 +1,11 @@
-a {
-  text-decoration: none;
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  background-color: #ffffff;
+  border: 1.5px solid #111111;
+  border-radius: 0px 0px 8px 8px;
+  /* height: 60px; */
 }
 
 .header-link {
@@ -7,23 +13,22 @@ a {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: 28px;
   margin-right: 40px;
+  padding-top: 18px;
+  padding-bottom: 18px;
 }
 
-.header-container {
+@media only screen and (min-width: 768px) {
+  .header-link {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+}
+
+.header > .container {
   display: flex;
-  position: relative;
   align-items: center;
   justify-content: space-between;
-  margin: 0 auto;
-  padding: 0 20px;
-  min-width: 320px;
-  background-color: #ffffff;
-  border: 1.5px solid #111111;
-  border-radius: 0px 0px 8px 8px;
-
-  height: 60px;
 }
 
 .header-nav-logo {
@@ -46,7 +51,13 @@ a {
 }
 
 .header-nav {
-  display: flex;
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .header-nav {
+    display: flex;
+  }
 }
 
 .nav-list-home {
@@ -111,6 +122,11 @@ a {
   color: var(--dark-theme-accent-cl);
 }
 
+@media only screen and (max-width: 767px) {
+  .header-menu-login {
+    display: none;
+  }
+}
 .user-login {
   fill: currentColor;
 }
@@ -206,17 +222,17 @@ a {
   text-decoration: none;
 }
 
-.header-burger--open {
+.header-burger-open {
   display: block;
 }
 
-@media (min-width: 768px) {
-  .header-burger--open {
+@media only screen and (min-width: 768px) {
+  .header-burger-open {
     display: none;
   }
 }
 
-.header-burger--open {
+.header-burger-open {
   background-color: inherit;
   border: transparent;
   cursor: pointer;
@@ -224,42 +240,6 @@ a {
   stroke: var(--light-theme-main-txt-cl);
 }
 
-.icon-burger--open {
+.icon-burger-open {
   fill: currentColor;
-}
-
-/*Mobie Styles*/
-@media only screen and (max-width: 767px) {
-  .container.header-container {
-    max-width: 100%;
-  }
-
-  .header-menu-login {
-    display: none;
-  }
-
-  .header-nav {
-    display: none;
-  }
-}
-
-/* Tablet Styles*/
-@media only screen and (min-width: 768px) {
-  .container.header-container {
-    max-width: 100%;
-  }
-
-  .header-container {
-    height: 68px;
-  }
-
-  .header__burger--open {
-    display: none;
-  }
-}
-
-@media only screen and (min-width: 1440px) {
-  .header-container {
-    height: 72px;
-  }
 }

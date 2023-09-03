@@ -1,7 +1,7 @@
-<header class="header-book">
-  <div class="header-container">
+<header class="header">
+  <div class="container">
     <div class="header-nav-logo">
-      <a href="#header" class="header-link">
+      <a href="#header" class="header-link link">
         <svg class="header-logo">
           <use href="./img/header/logo-light.svg#icon-logo"></use>
         </svg>
@@ -9,12 +9,12 @@
       </a>
 
       <div class="header-nav">
-        <a href="#header" class="nav-list-home current">
+        <a href="#header" class="nav-list-home current link">
           <span class="header-nav-link">home</span>
         </a>
-        <a href="#shopping-list-page" class="nav-list-home">
+        <a href="#shopping-list-page" class="nav-list-home link">
           <span class="header-nav-link">shopping list</span>
-          <svg class="shopping-list-svg" width="20px" height="20px">
+          <svg class="shopping-list-svg" width="20" height="20">
             <use href="./img/header/logo-light.svg#icon-cart-fill"></use>
           </svg>
         </a>
@@ -27,14 +27,20 @@
       </label>
 
       <button type="button" class="header-menu-login">
-        <svg class="user-login" width="32px" height="32px">
+        <svg class="user-login" width="32" height="32">
           <use href="./img/header/logo-light.svg#icon-user-fill"></use>
         </svg>
         <span class="user-text">Hello</span>
       </button>
 
-      <button class="header-burger--open" aria-expanded="false" type="button">
-        <svg class="icon-burger--open" width="28px" height="28px">
+      <button
+        class="header-burger-open"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-menu-button
+      >
+        <svg class="icon-burger-open" width="28" height="28">
           <use href="./img/icons/symbol-defs.svg#icon-burger-menu"></use>
         </svg>
       </button>
