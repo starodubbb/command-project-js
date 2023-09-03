@@ -1,5 +1,7 @@
 import { fetchCategoryList, fetchParticularCategory } from './service-api';
 
+// const categoriesList = await ();
+
 document.addEventListener('DOMContentLoaded', function () {
   const categoryContainer = document.querySelector('.books-container');
 
