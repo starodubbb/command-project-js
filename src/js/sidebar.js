@@ -10,7 +10,7 @@ startRender();
 async function startRender() {
   const data = await fetchCategoryList();
 
-  const markupTitle = `<h2 class="side-bar-title">All categories</h2>`;
+  const markupTitle = `<h2 class="side-bar-title current-category">All categories</h2>`;
 sideBarEl.insertAdjacentHTML('afterbegin', markupTitle)
 
   renderMarkupList(data);
@@ -28,7 +28,7 @@ sideBarListEl.addEventListener('click', onRenderMarkup);
 
 function onRenderMarkup (e) {
 	const currentCategory = e.target.textContent;
-	console.log(currentCategory)
+	sideBarEl.classList.add("current-category")
 
 	renderMarkupBook(currentCategory);
 
