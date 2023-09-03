@@ -1,14 +1,14 @@
 import { fetchBookById } from './service-api';
 
+import shop1 from '../img/pop-up/pop-up-shop-1.png';
+import shop2 from '../img/pop-up/pop-up-shop-2.png';
+import shop3 from '../img/pop-up/pop-up-shop-3.png';
+
 const closeBtn = document.querySelector('.modal-close-btn');
 const modal = document.querySelector('.modal-window');
 const backdrop = document.querySelector('.backdrop');
 let modalContent = document.querySelector('.modal-content');
 let currentBookData;
-
-const addBookBtn = document.querySelector('.modal-btn');
-const textOnBtn = document.querySelector('.modal-btn-add');
-const addNote = document.querySelector('.modal-note');
 
 const bestSellerBooks = document.querySelector('.books-container');
 
@@ -59,14 +59,17 @@ async function loadBookDetails(bookId) {
     backdrop.addEventListener('click', closeModal);
     document.addEventListener('keydown', onEscapeKey);
 
-    // Оновлюємо текст кнопки відповідно до наявності книги в списку покупок
     const btnAddEl = document.querySelector('.modal-btn-add');
     btnAddEl.addEventListener('click', onClickBtnAdd);
 
+    const modalNote = document.querySelector('.modal-note'); 
+
     if (isBookInShoppingList) {
       btnAddEl.textContent = 'REMOVE FROM THE SHOPPING LIST';
+      modalNote.textContent = 'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
     } else {
       btnAddEl.textContent = 'ADD TO SHOPPING LIST';
+      modalNote.textContent = ''; // Пустий текст, якщо книга не додана до списку покупок
     }
   } catch (error) {
     console.error('Помилка завантаження даних книги:', error);
@@ -98,12 +101,18 @@ function onClickBtnAdd() {
       arrFromLocalStorage.push(bookDataToStore);
       localStorage.setItem('shopping-list', JSON.stringify(arrFromLocalStorage));
 
-      document.querySelector('.modal-btn-add').textContent = 'Remove from the shopping list';
+      document.querySelector('.modal-btn-add').textContent = 'REMOVE FROM THE SHOPPING LIST';
+
+      const modalNote = document.querySelector('.modal-note'); 
+      modalNote.textContent = 'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
     } else {
       const filteredArr = arrFromLocalStorage.filter(item => item._id !== bookDataToStore._id);
       localStorage.setItem('shopping-list', JSON.stringify(filteredArr));
 
-      document.querySelector('.modal-btn-add').textContent = 'Add to shopping list';
+      document.querySelector('.modal-btn-add').textContent = 'ADD TO SHOPPING LIST';
+
+      const modalNote = document.querySelector('.modal-note'); 
+      modalNote.textContent = ''; // Пустий текст, якщо книга видалена зі списку покупок
     }
   } else {
     console.error('Дані про книгу відсутні.');
@@ -116,12 +125,12 @@ function openModal() {
   console.log('Модальне вікно відкрито');
   backdrop.classList.remove('is-hidden');
   modal.classList.remove('is-hidden');
-  disableBodyScroll(); // Відключаємо скролл при відкритті модального вікна
+  disableBodyScroll(); 
 
   if (isBookAddedToShoppingList) {
-    document.querySelector('.modal-btn-add').textContent = 'Remove from the shopping list';
+    document.querySelector('.modal-btn-add').textContent = 'REMOVE FROM THE SHOPPING LIST';
   } else {
-    document.querySelector('.modal-btn-add').textContent = 'Add to shopping list';
+    document.querySelector('.modal-btn-add').textContent = 'ADD TO SHOPPING LIST';
   }
 }
 
@@ -149,7 +158,7 @@ function onEscapeKey(evt) {
 function closeModal() {
   modal.classList.add('is-hidden');
   backdrop.classList.add('is-hidden');
-  enableBodyScroll(); // Включаємо скролл при закритті модального вікна
+  enableBodyScroll(); 
   document.removeEventListener('keydown', onEscapeKey);
   backdrop.removeEventListener('click', onBackdropClick);
 }
@@ -175,11 +184,7 @@ function markupModal(bookData) {
               rel="noopener no-referrer"
               >
               <img
-              srcset="
-              ./img/pop-up/pop-up-shop-1.png 1x,
-              ./img/pop-up/pop-up-shop-1@2x.png 2x 
-              "
-              src="./img/pop-up/pop-up-shop-1.png"
+              src="${shop1}"
               alt="Buy on Amazon"
               width="62"
               height="19"
@@ -193,11 +198,7 @@ function markupModal(bookData) {
               target="_blank"
               rel="noopener no-referrer"
               ><img
-              srcset="
-              ./img/pop-up/pop-up-shop-2.png 1x,
-              ./img/pop-up/pop-up-shop-2@2x.png 2x 
-              "
-              src="./img/pop-up/pop-up-shop-2.png"
+              src="${shop2}"
               alt="Buy on Apple"
               width="33"
               height="32"
@@ -212,11 +213,8 @@ function markupModal(bookData) {
               rel="noopener no-referrer"
             >
               <img
-              srcset="
-              ./img/pop-up/pop-up-shop-3.png 1x,
-              ./img/pop-up/pop-up-shop-3@2x.png 2x 
-              "
-              src="./img/pop-up/pop-up-shop-3.png"
+
+              src="${shop3}"
               alt="Book shop"
               width="38"
               height="36"

@@ -107,27 +107,31 @@
 
 .modal-book-title {
   font-size: 16px;
-  font-weight: 700;
-  line-height: 1.125;
   letter-spacing: -0.64px;
   text-transform: uppercase;
 }
 
 .modal-book-author {
+  color: var(--secondary-txt-cl);
   margin-top: 4px;
   font-size: 12px;
-  font-style: italic;
   font-weight: 400;
   line-height: 1.17;
   letter-spacing: -0.48px;
 }
 
 .modal-book-review {
+  font-family: DM Sans;
   margin-top: 18px;
   width: 287px;
   height: 70px;
+  font-style: normal;
   overflow-y: hidden;
+  line-height: 1.29;
+  letter-spacing: -0.56px;
 }
+
+
 
 .modal-book-links {
   margin-top: 14px;
@@ -135,10 +139,11 @@
 
 .modal-btn-add {
   background-color: #fff;
+  min-width: 211px;
   display: block;
   margin: 0 auto;
   margin-top: 40px;
-  padding: 14px 28px;
+  padding: 14px 23px;
   border-radius: 40px;
   border: 2px solid #4f2ee8;
   font-size: 14px;
@@ -149,18 +154,42 @@
   text-transform: uppercase;
 }
 
-.modal-btn-add:hover, .modal-btn-add:focus {
+
+.modal-btn-add:hover, .modal-btn-add:focus, .modal-btn-add:active {
   background-color: var(--fill-cl);
   color: #ffffff;
 }
 
 @media screen and (min-width: 768px) {
-  .modal-btn-add {
-
-    padding: 20px 0px;
-    width: 499px;
+  .modal-book-title {
+  font-size: 24px;
+  line-height: 1.17;
+  letter-spacing: -0.96px;
   }
+
+  .modal-book-author {
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.29;
+    letter-spacing: -0.56px;
+  }
+.modal-book-review {
+font-style: normal;
+font-weight: 400;
+line-height: 1.29;
 }
+
+.modal-btn-add {
+
+  padding: 20px 0px;
+  width: 499px;
+font-size: 18px;
+line-height: 1.33;
+letter-spacing: -0.18px;
+}
+  
+}
+
 
 .modal-book-list {
   display: flex;
@@ -181,4 +210,26 @@ filter: grayscale(100%);
 .modal-book-link:hover .modal-book-seller {
   filter: grayscale(100%) drop-shadow(0px 3px 3px rgba(0,0,0,.35));
 
+}
+
+.modal-note {
+  display: block;
+  margin: 8px auto 0;
+  width: 242px;
+  color: rgba(17, 17, 17, 0.50);
+  text-align: center;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.4px;
+}
+@media screen and (min-width: 768px) {
+  .modal-note {
+  width: 324px;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: -0.48px;
+  }
 }
