@@ -91,7 +91,7 @@ function createBookItemElement(book) {
   const bookItemElement = document.createElement('li');
   bookItemElement.classList.add('book-item');
   bookItemElement.classList.add('link');
-  bookItemElement.id = `${book._id}`;
+  bookItemElement.setAttribute('data-id', book._id);
 
   const bookImageElement = document.createElement('img');
   bookImageElement.src = book.book_image;
