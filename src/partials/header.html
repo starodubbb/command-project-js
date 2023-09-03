@@ -1,25 +1,33 @@
 <header class="header">
   <div class="container">
-    <div class="header-nav-logo">
-      <a href="#header" class="header-link link">
+    <nav class="header-nav">
+      <a href="./index.html" class="header-link link">
         <svg class="header-logo">
           <use href="./img/header/logo-light.svg#icon-logo"></use>
         </svg>
         <span class="header-logo-word">bookshelf</span>
       </a>
 
-      <div class="header-nav">
-        <a href="#header" class="nav-list-home current link">
-          <span class="header-nav-link">home</span>
-        </a>
-        <a href="#shopping-list-page" class="nav-list-home link">
-          <span class="header-nav-link">shopping list</span>
-          <svg class="shopping-list-svg" width="20" height="20">
-            <use href="./img/header/logo-light.svg#icon-cart-fill"></use>
-          </svg>
-        </a>
-      </div>
-    </div>
+      <ul class="header-list list">
+        <li class="header-item">
+          <a href="./index.html" class="nav-list-home link" data-page="home">
+            <span class="header-nav-link">home</span>
+          </a>
+        </li>
+        <li class="header-item">
+          <a
+            href="./shopping-list-page.html"
+            class="nav-list-home link"
+            data-page="shopping-list"
+          >
+            <span class="header-nav-link">shopping list</span>
+            <svg class="shopping-list-svg" width="20" height="20">
+              <use href="./img/header/logo-light.svg#icon-cart-fill"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
     <div class="header-theme-switcher">
       <label class="switcher header-switcher">
         <input class="switcher-input" id="theme-switcher" type="checkbox" />
@@ -27,9 +35,10 @@
       </label>
 
       <button type="button" class="header-menu-login">
-        <svg class="user-login" width="32" height="32">
-          <use href="./img/header/logo-light.svg#icon-user-fill"></use>
-        </svg>
+        <!-- <svg class="user-login" width="32" height="32">
+          <use href="./img/header/logo-light.svg#icon-user-fill"></use>   
+        </svg> -->
+        <img src="./img/header/user.svg" alt="" width="37" height="37" />
         <span class="user-text">Hello</span>
       </button>
 
