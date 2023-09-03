@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (books.length > 0) {
               const bookListElement = document.createElement('ul');
               bookListElement.classList.add('card-set');
+              bookListElement.classList.add('book-list');
 
               books.slice(0, 5).forEach(book => {
                 const bookItemElement = createBookItemElement(book);
@@ -49,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
               if (books.length > 5) {
                 const seeMoreButtonElement = document.createElement('button');
+                seeMoreButtonElement.classList.add('btn');
                 seeMoreButtonElement.textContent = 'See More';
                 seeMoreButtonElement.classList.add('see-more-button');
                 categoryElement.appendChild(seeMoreButtonElement);
@@ -91,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function createBookItemElement(book) {
   const bookItemElement = document.createElement('li');
   bookItemElement.classList.add('card-set-item');
+  bookItemElement.classList.add('book-item');
   bookItemElement.classList.add('link');
   bookItemElement.dataset.id = `${book._id}`;
 
