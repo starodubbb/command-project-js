@@ -1,1 +1,0 @@
-{"mappings":"oeAAAA,EAAA,S","sources":["src/js/index.js"],"sourcesContent":["import './header.js';\nimport './pop-up.js';\nimport './scroll-up.js';\nimport './sidebar.js';\nimport './support.js';\nimport './best-sellers.js';\nimport './mobile-menu.js';\nimport './service-api.js';\n"],"names":["parcelRequire"],"version":3,"file":"index.b604a3e8.js.map"}
