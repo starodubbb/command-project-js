@@ -1,6 +1,6 @@
 // import { fetchTopBooks } from `./service-api`;
 document.addEventListener('DOMContentLoaded', function () {
-  const categoryContainer = document.querySelector('#categoryContainer');
+  const categoryContainer = document.querySelector('#category-container');
 
   // Отримуємо доступ до категорій книг за допомогою API
   fetch('https://books-backend.p.goit.global/books/category-list')
