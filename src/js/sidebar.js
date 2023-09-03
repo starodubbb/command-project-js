@@ -2,7 +2,13 @@ import { fetchCategoryList, fetchParticularCategory } from './service-api';
 
 const sideBarEl = document.querySelector('.side-bar');
 const sideBarListEl = document.querySelector('.side-bar-list');
-const booksContainerEl = document.querySelector('.book-container');
+const booksContainerEl = document.querySelector('.books-container');
+const cardSetEl = document.querySelector('.card-set');
+
+const bestSellersTitleEl = document.querySelector('.best-sellers > h2');
+const categoriesListEl = document.querySelector('.categories-list')
+
+console.log(categoriesListEl)
 
 startRender();
 
@@ -29,21 +35,22 @@ sideBarListEl.addEventListener('click', onRenderMarkup);
 function onRenderMarkup(e) {
   const currentCategory = e.target.textContent;
 
-  renderMarkupBook(currentCategory);
+bestSellersTitleEl.innerHTML = '';
 
+  renderMarkupBook(currentCategory);
 }
 
 async function renderMarkupBook(category) {
   const data = await fetchParticularCategory(category);
-  console.log(data);
 
-  const markupBook = data.map(({book_image, title, author, id}) => {
-     const markup =  `<li class="card-set-item" data-id="${id}">
-	 <div><img src="${book_image}" alt=""></div>
-	  <p>${title}</p>
-	  <p>${author}</p></li`;
+  const markupBook = data.map(({ book_image, title, author, _id }) => {
 
-	  booksContainerEl.insertAdjacentHTML('afterend', markup)
+    return `<li class="card-set-item" data-id="${_id}">
+	 <div class="wrapper-img"><img class="card-set-img" src="${book_image}" alt=""></div>
+	  <p class="card-set-title">${title}</p>
+	  <p class="card-set-author">${author}</p></li>`;
+  }).join("");
 
-  });
+  return cardSetEl.innerHTML = markupBook;
+  
 }
