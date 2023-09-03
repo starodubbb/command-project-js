@@ -177,44 +177,29 @@ function markupModal(bookData) {
 }
 
 
-// export async function fetchBookById(id) {
-//   try {
-//     const res = await axios.get(`${BASE_URL}/${id}`);
-//     console.log('Отримані дані від сервера:', res.data);
-//     return res.data;
-//   } catch (error) {
-//     console.error('Помилка при завантаженні даних книги:', error);
-//     throw error;
-//   }
-// }
-
-
 addBookBtn.addEventListener('click', onBtnAddClick);
 
 function onBtnAddClick() {
-  // Отримайте дані про книгу з глобальної змінної currentBookData
   if (currentBookData) {
     const bookDataToStore = currentBookData;
     const arrFromLocalStorage = JSON.parse(localStorage.getItem('shopping-list')) || [];
 
-    // Перевірка, чи об'єкт вже є в масиві
     const isBookInLocalStorage = arrFromLocalStorage.some(item => item._id === bookDataToStore._id);
 
     if (!isBookInLocalStorage) {
-      // Якщо об'єкта немає в localStorage, додайте його та змініть текст кнопки
+      
       arrFromLocalStorage.push(bookDataToStore);
       localStorage.setItem('shopping-list', JSON.stringify(arrFromLocalStorage));
       noteAddBtnClick.classList.add('is-hidden');
       noteRemoveBtnClick.classList.remove('is-hidden');
     } else {
-      // Інакше, видаліть об'єкт з localStorage та змініть текст кнопки
+     
       const filteredArr = arrFromLocalStorage.filter(item => item._id !== bookDataToStore._id);
       localStorage.setItem('shopping-list', JSON.stringify(filteredArr));
       noteAddBtnClick.classList.remove('is-hidden');
       noteRemoveBtnClick.classList.add('is-hidden');
     }
 
-    // Змініть видимість addNote
     addNote.classList.toggle('is-hidden');
   } else {
     console.error('Дані про книгу відсутні.');
