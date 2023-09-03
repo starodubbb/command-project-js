@@ -1,5 +1,5 @@
 .side-bar {
-  max-width: 307px;
+  max-width: 327px;
   max-height: 228px;
 
   font-size: 16px;
@@ -10,28 +10,19 @@
 
 @media only screen and (min-width: 768px) {
   .side-bar {
-    max-width: 309px;
+    max-width: 329px;
     max-height: 472px;
 
-    font-size: 17px;
+    font-size: 18px;
 	 line-height: 133.333%;
   }
 }
 @media only screen and (min-width: 1440px) {
   .side-bar {
-    max-width: 328px;
-	 font-size: 18px;
-
+    max-width: 348px;
   }
 }
 
-.side-bar-title {
-  margin-bottom: 24px;
-
-  font-size: inherit;
-  font-weight: 700;
-  letter-spacing: -0.32px;
-}
 
 @media only screen and (min-width: 768px) {
 	.side-bar-title  {
@@ -65,7 +56,16 @@
   letter-spacing: -0.32px;
 }
 
+.side-bar-btn:hover,
+.side-bar-btn:focus{
+	color: var(--light-theme-accent-cl);
+
+	transition-duration: 250ms;
+}
+
 .current-category{
 	color: var(--light-theme-accent-cl);
 	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 14px;
 }
