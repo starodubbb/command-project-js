@@ -5,8 +5,8 @@ async function scrollBtnFunction() {
 
   function scrollFunction() {
     if (
-      document.body.scrollTop > 400 ||
-      document.documentElement.scrollTop > 400
+      document.body.scrollTop > 200 ||
+      document.documentElement.scrollTop > 200
     ) {
       scrollButton.style.display = 'flex';
     } else {
@@ -24,4 +24,3 @@ async function scrollBtnFunction() {
 }
 
 scrollBtnFunction();
-
