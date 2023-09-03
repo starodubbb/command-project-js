@@ -30,7 +30,8 @@ svg {
   font-weight: 500;
 }
 .btn-link svg {
-  font-size: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .header-mobile {
@@ -54,9 +55,13 @@ svg {
     background-position: 0 130%, 0 0;
     background-size: contain;
     padding: 84px 20px 380px;
+    display: block;
+    transition: 0.3s;
+    transform: translateX(-100%);
   }
   .header-mobile.show {
-    display: block;
+    /* left: 0; */
+    transform: translateX(0);
   }
   .header-mobile .header-mobile-nav {
     display: flex;
@@ -67,6 +72,10 @@ svg {
     margin-top: 125px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0;
+    list-style: none;
+  }
+  .header-mobile .header-mobile-nav-li {
   }
 
   .header-mobile .user-info {
