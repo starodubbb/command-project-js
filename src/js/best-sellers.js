@@ -1,16 +1,20 @@
 // import { fetchTopBooks } from `./service-api`;
 document.addEventListener('DOMContentLoaded', function () {
-  const categoryContainer = document.querySelector('#category-container');
+  const categoryContainer = document.querySelector('.books-container');
 
   // Отримуємо доступ до категорій книг за допомогою API
   fetch('https://books-backend.p.goit.global/books/category-list')
     .then(response => response.json())
     .then(categories => {
+      const categoriesList = document.createElement('ul');
+      categoriesList.classList.add('list');
+      categoriesList.classList.add('categories-list');
+
       categories.forEach(category => {
-        const categoryElement = document.createElement('div');
+        const categoryElement = document.createElement('li');
         categoryElement.classList.add('category');
 
-        const categoryTitleElement = document.createElement('h2');
+        const categoryTitleElement = document.createElement('h3');
         categoryTitleElement.textContent = category.list_name;
         categoryTitleElement.classList.add('category-item');
         categoryElement.appendChild(categoryTitleElement);
@@ -37,8 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.querySelectorAll('.book-item');
               bookBestItemElements.forEach(bookBestItem => {
                 bookBestItem.addEventListener('click', () => {
-                //   const bookId = bookBestItem.id;
-                //   openModal(bookId);
+                  //   const bookId = bookBestItem.id;
+                  //   openModal(bookId);
                 });
               });
 
@@ -74,8 +78,9 @@ document.addEventListener('DOMContentLoaded', function () {
             );
           });
 
-        categoryContainer.appendChild(categoryElement);
+        categoriesList.appendChild(categoryElement);
       });
+      categoryContainer.appendChild(categoriesList);
     })
     .catch(error => {
       console.log('Сталася помилка при отриманні даних з API:', error);
@@ -94,7 +99,7 @@ function createBookItemElement(book) {
   bookImageElement.classList.add('book-image');
   bookItemElement.appendChild(bookImageElement);
 
-  const bookTitleElement = document.createElement('h3');
+  const bookTitleElement = document.createElement('h4');
   bookTitleElement.textContent = book.title;
   bookTitleElement.classList.add('book-title');
   bookTitleElement.classList.add('ellipsis');
