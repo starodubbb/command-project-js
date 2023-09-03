@@ -2,7 +2,7 @@ import { fetchCategoryList, fetchParticularCategory } from './service-api';
 
 const sideBarEl = document.querySelector('.side-bar');
 const sideBarListEl = document.querySelector('.side-bar-list');
-const containerEl = document.querySelector('.container');
+const booksContainerEl = document.querySelector('.container');
 
 startRender();
 
@@ -31,15 +31,19 @@ function onRenderMarkup(e) {
 
   renderMarkupBook(currentCategory);
 
-  e.target.classList.add('current-category');
 }
 
 async function renderMarkupBook(category) {
   const data = await fetchParticularCategory(category);
   console.log(data);
 
-  const markupBook = data.map(book => {
-	return `<li class=card-set-item>
-	</li`
-  })
+  const markupBook = data.map(({book_image, title, author, id}) => {
+     const markup =  `<li class="card-set-item" data-id="${id}">
+	 <div><img src="${book_image}" alt=""></div>
+	  <p>${title}</p>
+	  <p>${author}</p></li`;
+
+	  booksContainerEl.insertAdjacentHTML('afterend', markup)
+
+  });
 }
