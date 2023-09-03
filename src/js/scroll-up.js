@@ -1,3 +1,5 @@
+import throttle from 'lodash/throttle';
+
 async function scrollBtnFunction() {
   const scrollButton = document.getElementById('scrollBtn');
 
@@ -5,8 +7,8 @@ async function scrollBtnFunction() {
 
   function scrollFunction() {
     if (
-      document.body.scrollTop > 200 ||
-      document.documentElement.scrollTop > 200
+      document.body.scrollTop > 400 ||
+      document.documentElement.scrollTop > 400
     ) {
       scrollButton.style.display = 'flex';
     } else {
@@ -14,8 +16,9 @@ async function scrollBtnFunction() {
     }
   }
 
+  const scrollFunctionThrottled = throttle(scrollFunction, 200);
   window.onscroll = function () {
-    scrollFunction();
+    scrollFunctionThrottled();
   };
 
   scrollButton.addEventListener('click', function () {
