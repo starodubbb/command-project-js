@@ -1,4 +1,4 @@
-import { fetchTopBooks } from './service-api';
+import { fetchCategoryList, fetchParticularCategory } from './service-api';
 
 document.addEventListener('DOMContentLoaded', function () {
   const categoryContainer = document.querySelector('.books-container');
