@@ -1,6 +1,4 @@
 .side-bar {
-  max-width: 327px;
-  max-height: 228px;
 
   font-size: 16px;
   line-height: 112.5%;
@@ -16,7 +14,7 @@
 
 @media only screen and (min-width: 768px) {
   .side-bar {
-    max-width: 329px;
+    width: 329px;
     max-height: 472px;
 
     font-size: 18px;
@@ -25,7 +23,7 @@
 }
 @media only screen and (min-width: 1440px) {
   .side-bar {
-    width: 348px;
+    width: 356px;
   }
 }
 

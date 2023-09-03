@@ -4,8 +4,7 @@ const sideBarEl = document.querySelector('.side-bar');
 const sideBarListEl = document.querySelector('.side-bar-list');
 const booksContainerEl = document.querySelector('.books-container');
 const cardSetEl = document.querySelector('.card-set');
-const bestSellersEl = document.querySelector('.best-sellers');
-
+const bestSellersTitleEl = document.querySelector('.best-sellers > h2');
 
 startRender();
 
@@ -31,27 +30,25 @@ sideBarListEl.addEventListener('click', onRenderMarkup);
 
 function onRenderMarkup(e) {
   const currentCategory = e.target.textContent;
-  const categoriesListEl = document.querySelector('.categories-list')
+  const categoriesListEl = document.querySelector('.categories-list');
 
-bestSellersEl.innerHTML = '';
-categoriesListEl.innerHTML = '';
+  bestSellersTitleEl.innerHTML = '';
+  categoriesListEl.innerHTML = '';
 
   renderMarkupBook(currentCategory);
-  
-  
 }
 
 async function renderMarkupBook(category) {
   const data = await fetchParticularCategory(category);
 
-  const markupBook = data.map(({ book_image, title, author, _id }) => {
-
-    return `<li class="card-set-item" data-id="${_id}">
-	 <div class="wrapper-img"><img class="card-set-img" src="${book_image}" alt=""></div>
+  const markupBook = data
+    .map(({ book_image, title, author, _id }) => {
+      return `<li class="card-set-item" data-id="${_id}">
+	 <button class="side-bar-btn" type="button"><div class="wrapper-img"><img class="card-set-img" src="${book_image}" alt=""></div>
 	  <p class="card-set-title">${title}</p>
-	  <p class="card-set-author">${author}</p></li>`;
-  }).join("");
+	  <p class="card-set-author">${author}</p></li></button>`;
+    })
+    .join('');
 
-  return cardSetEl.innerHTML = markupBook;
-  
+  return (cardSetEl.innerHTML = markupBook);
 }
