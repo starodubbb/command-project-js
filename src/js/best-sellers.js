@@ -1,7 +1,7 @@
-// import { fetchCategoryList, fetchParticularCategory } from './service-api';
+import { fetchCategoryList, fetchParticularCategory } from './service-api';
 
 // const categoriesList = await fetchCategoryList();
-// const books =await fetchParticularCategory(); 
+// const books = await fetchParticularCategory(); 
 
 document.addEventListener('DOMContentLoaded', function () {
   const categoryContainer = document.querySelector('.books-container');
@@ -95,7 +95,7 @@ function createBookItemElement(book) {
   const bookItemElement = document.createElement('li');
   bookItemElement.classList.add('card-set-item');
   bookItemElement.classList.add('link');
-  bookItemElement.id = `${book._id}`;
+  bookItemElement.dataset.id = `${book._id}`;
 
   const bookImageElement = document.createElement('img');
   bookImageElement.src = book.book_image;
