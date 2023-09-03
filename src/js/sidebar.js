@@ -4,11 +4,8 @@ const sideBarEl = document.querySelector('.side-bar');
 const sideBarListEl = document.querySelector('.side-bar-list');
 const booksContainerEl = document.querySelector('.books-container');
 const cardSetEl = document.querySelector('.card-set');
+const bestSellersEl = document.querySelector('.best-sellers');
 
-const bestSellersTitleEl = document.querySelector('.best-sellers > h2');
-const categoriesListEl = document.querySelector('.categories-list')
-
-console.log(categoriesListEl)
 
 startRender();
 
@@ -34,10 +31,14 @@ sideBarListEl.addEventListener('click', onRenderMarkup);
 
 function onRenderMarkup(e) {
   const currentCategory = e.target.textContent;
+  const categoriesListEl = document.querySelector('.categories-list')
 
-bestSellersTitleEl.innerHTML = '';
+bestSellersEl.innerHTML = '';
+categoriesListEl.innerHTML = '';
 
   renderMarkupBook(currentCategory);
+  
+  
 }
 
 async function renderMarkupBook(category) {
