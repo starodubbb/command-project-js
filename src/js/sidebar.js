@@ -2,7 +2,7 @@ import { fetchCategoryList, fetchParticularCategory } from './service-api';
 
 const sideBarEl = document.querySelector('.side-bar');
 const sideBarListEl = document.querySelector('.side-bar-list');
-const booksContainerEl = document.querySelector('.container');
+const booksContainerEl = document.querySelector('.book-container');
 
 startRender();
 
