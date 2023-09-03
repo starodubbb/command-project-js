@@ -31,11 +31,12 @@
   margin-top: 40px;
 }
 .book-image {
-  width: 335px;
-  height: 485px;
+  /* width: 335px; */
+  /* height: 485px; */
   border-radius: 8px;
   /* margin-left: auto; */
-  margin-right: auto;
+  /* margin-right: auto; */
+  object-fit: cover;
 }
 @media (min-width: 768px) {
   .book-image {
@@ -46,8 +47,8 @@
 
 @media (min-width: 1440px) {
   .book-image {
-    width: 180px;
-    height: 256px;
+    /* width: 180px; */
+    /* height: 256px; */
   }
 }
 .book-title {

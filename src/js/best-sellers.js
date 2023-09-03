@@ -1,4 +1,5 @@
-// import { fetchTopBooks } from `./service-api`;
+import { fetchTopBooks } from './service-api';
+
 document.addEventListener('DOMContentLoaded', function () {
   const categoryContainer = document.querySelector('.books-container');
 
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (books.length > 0) {
               const bookListElement = document.createElement('ul');
-              bookListElement.classList.add('book-list');
+              bookListElement.classList.add('card-set');
 
               books.slice(0, 5).forEach(book => {
                 const bookItemElement = createBookItemElement(book);
@@ -38,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
               categoryElement.appendChild(bookListElement);
               const bookBestItemElements =
-                document.querySelectorAll('.book-item');
+                document.querySelectorAll('.card-set-item');
               bookBestItemElements.forEach(bookBestItem => {
                 bookBestItem.addEventListener('click', () => {
                   //   const bookId = bookBestItem.id;
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 seeMoreButtonElement.addEventListener('click', () => {
                   const bookListElement =
-                    categoryElement.querySelector('.book-list');
+                    categoryElement.querySelector('.card-set');
 
                   books.slice(5).forEach(book => {
                     const bookItemElement = createBookItemElement(book);
@@ -89,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function createBookItemElement(book) {
   const bookItemElement = document.createElement('li');
-  bookItemElement.classList.add('book-item');
+  bookItemElement.classList.add('card-set-item');
   bookItemElement.classList.add('link');
   bookItemElement.id = `${book._id}`;
 
