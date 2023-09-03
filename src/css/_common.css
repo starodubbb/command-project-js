@@ -6,6 +6,11 @@ body {
 
   color: var(--light-theme-main-txt-cl);
   background-color: var(--light-bg-cl);
+  overflow: scroll;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
 
 .section {

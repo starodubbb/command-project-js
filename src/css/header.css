@@ -1,11 +1,10 @@
 .header {
-  position: fixed;
+  position: absolute;
   width: 100%;
   z-index: 10;
   background-color: #ffffff;
   border: 1.5px solid #111111;
   border-radius: 0px 0px 8px 8px;
-  /* height: 60px; */
 }
 
 .header-link {
@@ -222,17 +221,17 @@
   text-decoration: none;
 }
 
-.header-burger-open {
+.header-burger {
   display: block;
 }
 
 @media only screen and (min-width: 768px) {
-  .header-burger-open {
+  .header-burger {
     display: none;
   }
 }
 
-.header-burger-open {
+.header-burger {
   background-color: inherit;
   border: transparent;
   cursor: pointer;
@@ -240,6 +239,16 @@
   stroke: var(--light-theme-main-txt-cl);
 }
 
-.icon-burger-open {
+.icon-burger {
   fill: currentColor;
+}
+
+.header-burger .icon-burger-close {
+  display: none;
+}
+.header-burger.is-open .icon-burger-close {
+  display: block;
+}
+.header-burger.is-open .icon-burger-open {
+  display: none;
 }
