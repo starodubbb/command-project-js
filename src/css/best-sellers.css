@@ -1,0 +1,132 @@
+.link {
+  list-style: none;
+  text-decoration: none;
+}
+
+.span-books {
+  color: var(--light-theme-accent-cl);
+}
+
+.main-title {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .main-title {
+    font-size: 48px;
+  }
+}
+
+.category-item {
+  color: var(--secondary-txt-cl);
+  font-family: DM Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.42px;
+  text-transform: uppercase;
+
+  margin-top: 40px;
+}
+.book-image {
+  width: 335px;
+  height: 485px;
+  border-radius: 8px;
+  /* margin-left: auto; */
+  margin-right: auto;
+}
+@media (min-width: 768px) {
+  .book-image {
+    width: 218px;
+    height: 316px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .book-image {
+    width: 180px;
+    height: 256px;
+  }
+}
+.book-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.64px;
+  text-transform: uppercase;
+
+  margin-top: 14px;
+}
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 18px;
+}
+.book-item {
+  flex-basis: 100%;
+  margin-bottom: 0px;
+  /* text-align: center; */
+}
+
+.book-list > .book-item:nth-child(5n) {
+  gap: 0px;
+}
+
+@media (min-width: 768px) {
+  .book-item {
+    flex-basis: calc(33.33% - 24px);
+  }
+}
+@media (min-width: 1440px) {
+  .book-item {
+    flex-basis: calc(20% - 24px);
+  }
+}
+@media (min-width: 768px) and (max-width: 1440px) {
+  .book-list .book-item:nth-child(n + 4) {
+    display: none;
+  }
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 150px;
+}
+.book-author {
+  color: var(--secondary-txt-cl);
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: -0.48px;
+
+  margin-top: 4px;
+}
+.see-more-button {
+  color: var(--dark-theme-main-txt-cl);
+  border-radius: 40px;
+  border: 2px solid var(--btn-cl);
+  background-color: var(--categories-txt-cl);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  margin-top: 32px;
+  margin-left: auto;
+  padding-top: 14px;
+  padding-right: 28px;
+  padding-bottom: 14px;
+  padding-left: 28px;
+  margin-right: 80px;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.14px;
+  text-transform: uppercase;
+}
