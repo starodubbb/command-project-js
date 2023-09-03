@@ -133,7 +133,7 @@
   margin-top: 14px;
 }
 
-.modal-btn {
+.modal-btn-add {
   background-color: #fff;
   display: block;
   margin: 0 auto;
@@ -149,13 +149,13 @@
   text-transform: uppercase;
 }
 
-.modal-btn:hover, .modal-btn:focus {
+.modal-btn-add:hover, .modal-btn-add:focus {
   background-color: var(--fill-cl);
   color: #ffffff;
 }
 
 @media screen and (min-width: 768px) {
-  .modal-btn {
+  .modal-btn-add {
 
     padding: 20px 0px;
     width: 499px;

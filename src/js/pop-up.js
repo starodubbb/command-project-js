@@ -1,26 +1,33 @@
-import { fetchBookById } from './service-api'
+import { fetchBookById } from './service-api';
 
 const closeBtn = document.querySelector('.modal-close-btn');
 const modal = document.querySelector('.modal-window');
 const backdrop = document.querySelector('.backdrop');
-let modalContent = document.querySelector('.modal-content'); 
+let modalContent = document.querySelector('.modal-content');
 let currentBookData;
 
-const addBookBtn = document.querySelector('.modal-btn')
-const noteAddBtnClick = document.querySelector('.modal-btn-add');
-const noteRemoveBtnClick = document.querySelector('.modal-btn-remove');
+const addBookBtn = document.querySelector('.modal-btn');
+const textOnBtn = document.querySelector('.modal-btn-add');
 const addNote = document.querySelector('.modal-note');
 
-const bestSellerBooks = document.querySelector('.books-container'); // посилання на секцію з бестселлерами
-console.log(bestSellerBooks);
+const bestSellerBooks = document.querySelector('.books-container');
 
-// const categoriesList = document.querySelector('.category-books-list');
-// const bookElements = bestSellerBooks.querySelectorAll('.book');
-bestSellerBooks.addEventListener('click', onBookClick); // слухач подій на кліку по книжці 
+bestSellerBooks.addEventListener('click', onBookClick);
 
 modal.addEventListener('click', (evt) => {
   evt.stopPropagation();
 });
+
+let shoppingListData = [];
+loadData();
+
+function disableBodyScroll() {
+  document.body.style.overflow = 'hidden';
+}
+
+function enableBodyScroll() {
+  document.body.style.overflow = 'visible';
+}
 
 function onBookClick(event) {
   const bookElement = event.target.closest('.book-item');
@@ -38,49 +45,93 @@ async function loadBookDetails(bookId) {
     const bookData = await fetchBookById(bookId);
     currentBookData = bookData;
 
+    const shoppingList = JSON.parse(localStorage.getItem('shopping-list')) || [];
+
+    const isBookInShoppingList = shoppingList.some(item => item._id === bookData._id);
+
     const modalHTML = markupModal(bookData);
 
-    modalContent.innerHTML = modalHTML; // Оновлюємо modalContent, а не оголошуємо його знову
+    modalContent.innerHTML = modalHTML;
     modal.classList.remove('is-hidden');
-    openModal()
+    openModal();
 
     closeBtn.addEventListener('click', closeModal);
     backdrop.addEventListener('click', closeModal);
     document.addEventListener('keydown', onEscapeKey);
+
+    // Оновлюємо текст кнопки відповідно до наявності книги в списку покупок
+    const btnAddEl = document.querySelector('.modal-btn-add');
+    btnAddEl.addEventListener('click', onClickBtnAdd);
+
+    if (isBookInShoppingList) {
+      btnAddEl.textContent = 'REMOVE FROM THE SHOPPING LIST';
+    } else {
+      btnAddEl.textContent = 'ADD TO SHOPPING LIST';
+    }
   } catch (error) {
     console.error('Помилка завантаження даних книги:', error);
+
+    currentBookData = {};
   }
 }
 
+function loadData() {
+  const data = localStorage.getItem('shopping-list');
 
+  if (data) {
+    shoppingListData = JSON.parse(data);
+  }
+}
+
+function saveData(data) {
+  localStorage.setItem('shopping-list', JSON.stringify(data));
+}
+
+function onClickBtnAdd() {
+  if (currentBookData) {
+    const bookDataToStore = currentBookData;
+    const arrFromLocalStorage = JSON.parse(localStorage.getItem('shopping-list')) || [];
+
+    const isBookInLocalStorage = arrFromLocalStorage.some(item => item._id === bookDataToStore._id);
+
+    if (!isBookInLocalStorage) {
+      arrFromLocalStorage.push(bookDataToStore);
+      localStorage.setItem('shopping-list', JSON.stringify(arrFromLocalStorage));
+
+      document.querySelector('.modal-btn-add').textContent = 'Remove from the shopping list';
+    } else {
+      const filteredArr = arrFromLocalStorage.filter(item => item._id !== bookDataToStore._id);
+      localStorage.setItem('shopping-list', JSON.stringify(filteredArr));
+
+      document.querySelector('.modal-btn-add').textContent = 'Add to shopping list';
+    }
+  } else {
+    console.error('Дані про книгу відсутні.');
+  }
+}
+
+let isBookAddedToShoppingList = false;
 
 function openModal() {
   console.log('Модальне вікно відкрито');
-backdrop.classList.remove('is-hidden');
-modal.classList.remove('is-hidden');
+  backdrop.classList.remove('is-hidden');
+  modal.classList.remove('is-hidden');
+  disableBodyScroll(); // Відключаємо скролл при відкритті модального вікна
+
+  if (isBookAddedToShoppingList) {
+    document.querySelector('.modal-btn-add').textContent = 'Remove from the shopping list';
+  } else {
+    document.querySelector('.modal-btn-add').textContent = 'Add to shopping list';
+  }
 }
-
-
-
-// bookElements.forEach((bookElement) => {
-//   bookElement.addEventListener('click', onBookClick);
-// });
-
-
-
 
 closeBtn.addEventListener('click', onBtnCloseClick);
 backdrop.addEventListener('click', onBackdropClick);
 document.addEventListener('keydown', onEscapeKey);
 
-
-
-// addBookBtn.addEventListener('click', onBtnBookClick); // слухач на кнопці додавання/видалення книги в модальному вікні 
-
-
-
-function onBtnCloseClick()  {
-closeModal();
+function onBtnCloseClick() {
+  closeModal();
+  enableBodyScroll();
 }
 
 function onBackdropClick(evt) {
@@ -95,16 +146,16 @@ function onEscapeKey(evt) {
   }
 }
 
-
 function closeModal() {
   modal.classList.add('is-hidden');
-  backdrop.classList.add('is-hidden')
+  backdrop.classList.add('is-hidden');
+  enableBodyScroll(); // Включаємо скролл при закритті модального вікна
   document.removeEventListener('keydown', onEscapeKey);
   backdrop.removeEventListener('click', onBackdropClick);
 }
 
 function markupModal(bookData) {
-  const { book_image, list_name, author, description, buy_links, } = bookData;
+  const { book_image, list_name, author, description, buy_links } = bookData;
   return `<div class="modal-content">
       <img class="modal-book-img"
               src="${book_image}"
@@ -112,13 +163,13 @@ function markupModal(bookData) {
             />
             <div class="modal-book-descr">
               <h2 class="modal-book-title">${list_name}</h2>
-               <h3 class="modal-book-author">${author}</h3>
-             
-           <p class="modal-book-review">${description}</p>
+              <h3 class="modal-book-author">${author}</h3>
+
+          <p class="modal-book-review">${description}</p>
         <ul class="modal-book-list list">
           <li class="modal-book-el">
             <a
-              href="https://www.amazon.com/"
+              href="${buy_links[0].url}"
               class="modal-book-link"
               target="_blank"
               rel="noopener no-referrer"
@@ -137,7 +188,7 @@ function markupModal(bookData) {
           </li>
           <li class="modal-book-el">
             <a
-              href="https://www.apple.com/ua/apple-books/"
+              href="${buy_links[1].url}"
               class="modal-book-link"
               target="_blank"
               rel="noopener no-referrer"
@@ -155,7 +206,7 @@ function markupModal(bookData) {
           </li>
           <li class="modal-book-el">
             <a
-              href=""
+              href="${buy_links[4].url}"
               class="modal-book-link"
               target="_blank"
               rel="noopener no-referrer"
@@ -174,34 +225,4 @@ function markupModal(bookData) {
           </li>
         </ul>
       </div>`;
-}
-
-
-addBookBtn.addEventListener('click', onBtnAddClick);
-
-function onBtnAddClick() {
-  if (currentBookData) {
-    const bookDataToStore = currentBookData;
-    const arrFromLocalStorage = JSON.parse(localStorage.getItem('shopping-list')) || [];
-
-    const isBookInLocalStorage = arrFromLocalStorage.some(item => item._id === bookDataToStore._id);
-
-    if (!isBookInLocalStorage) {
-      
-      arrFromLocalStorage.push(bookDataToStore);
-      localStorage.setItem('shopping-list', JSON.stringify(arrFromLocalStorage));
-      noteAddBtnClick.classList.add('is-hidden');
-      noteRemoveBtnClick.classList.remove('is-hidden');
-    } else {
-     
-      const filteredArr = arrFromLocalStorage.filter(item => item._id !== bookDataToStore._id);
-      localStorage.setItem('shopping-list', JSON.stringify(filteredArr));
-      noteAddBtnClick.classList.remove('is-hidden');
-      noteRemoveBtnClick.classList.add('is-hidden');
-    }
-
-    addNote.classList.toggle('is-hidden');
-  } else {
-    console.error('Дані про книгу відсутні.');
-  }
 }
