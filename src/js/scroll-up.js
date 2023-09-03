@@ -1,6 +1,8 @@
 async function scrollBtnFunction() {
   const scrollButton = document.getElementById('scrollBtn');
 
+  scrollButton.style.display = 'none';
+
   function scrollFunction() {
     if (
       document.body.scrollTop > 200 ||
@@ -22,3 +24,4 @@ async function scrollBtnFunction() {
 }
 
 scrollBtnFunction();
+
