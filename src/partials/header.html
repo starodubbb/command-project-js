@@ -1,48 +1,63 @@
 <header class="header">
-  <div class="header__container">
-    <div class="header__nav-logo">
-      <a href="#header" class="header__link">
-        <svg class="header__logo">
+  <div class="container">
+    <nav class="header-nav">
+      <a href="./index.html" class="header-link link">
+        <svg class="header-logo">
           <use href="./img/header/logo-light.svg#icon-logo"></use>
         </svg>
-        <span class="header__logo-word">bookshelf</span>
+        <span class="header-logo-word">bookshelf</span>
       </a>
 
-      <div class="header__nav">
-        <a href="#header" class="nav__list-home current">
-          <span class="header__nav-link">home</span>
-        </a>
-        <a href="#shopping-list-page" class="nav__list-home">
-          <span class="header__nav-link">shopping list</span>
-          <svg
-            class="header__nav-icon shopping__list-svg"
-            width="20px"
-            height="20px"
+      <ul class="header-list list">
+        <li class="header-item">
+          <a href="./index.html" class="nav-list-home link" data-page="home">
+            <span class="header-nav-link">home</span>
+          </a>
+        </li>
+        <li class="header-item">
+          <a
+            href="./shopping-list-page.html"
+            class="nav-list-home link"
+            data-page="shopping-list"
           >
-            <use href="./img/icons/symbol-defs.svg#icon-basket"></use>
-          </svg>
-        </a>
-      </div>
-    </div>
-    <div class="header__theme-switcher">
-      <label class="switcher header__switcher">
+            <span class="header-nav-link">shopping list</span>
+            <svg class="shopping-list-svg" width="20" height="20">
+              <use href="./img/header/logo-light.svg#icon-cart-fill"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="header-theme-switcher">
+      <label class="switcher header-switcher">
         <input class="switcher-input" id="theme-switcher" type="checkbox" />
         <span class="switcher-slider"></span>
       </label>
 
-      <button type="button" class="header__menu-login">
-        <img
-          srcset="./img/header/stephen.png, ./img/header/stephen@2x.png"
-          src="./img/header/stephen.png"
-          alt="user"
-          width="37"
-        />
-        <span>Hello</span>
+      <button type="button" class="header-menu-login">
+        <!-- <svg class="user-login" width="32" height="32">
+          <use href="./img/header/logo-light.svg#icon-user-fill"></use>   
+        </svg> -->
+        <img src="./img/header/user.svg" alt="" width="37" height="37" />
+        <span class="user-text">Hello</span>
       </button>
 
-      <button class="header__burger--open" aria-expanded="false" type="button">
-        <svg class="icon__burger--open" width="28px" height="28px">
-          <use href="./img/icons/symbol-defs.svg#icon-burger-menu"></use>
+      <button
+        class="header-burger"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-menu-button
+      >
+        <svg class="icon-burger" width="28" height="28">
+          <use
+            class="icon-burger-open"
+            href="./img/icons/symbol-defs.svg#icon-burger-menu"
+          ></use>
+          <use
+            class="icon-burger-close"
+            href="./img/icons/symbol-defs.svg#icon-x-close"
+          ></use>
         </svg>
       </button>
     </div>
