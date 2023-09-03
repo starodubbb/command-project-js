@@ -28,7 +28,7 @@ sideBarListEl.addEventListener('click', onRenderMarkup);
 
 function onRenderMarkup (e) {
 	const currentCategory = e.target.textContent;
-	sideBarEl.classList.add("current-category")
+	
 
 	renderMarkupBook(currentCategory);
 
