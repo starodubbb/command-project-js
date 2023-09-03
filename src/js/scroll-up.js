@@ -1,4 +1,4 @@
-import throttle from 'lodash/throttle';
+import throttle from 'lodash.throttle';
 
 async function scrollBtnFunction() {
   const scrollButton = document.getElementById('scrollBtn');
@@ -16,11 +16,8 @@ async function scrollBtnFunction() {
     }
   }
 
-  const scrollFunctionThrottled = throttle(scrollFunction, 200);
-  window.onscroll = function () {
-    scrollFunctionThrottled();
-  };
-
+  window.onscroll = throttle(scrollFunction, 200);
+ 
   scrollButton.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
