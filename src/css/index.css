@@ -1,6 +1,7 @@
 @import './fonts.css';
 @import './reset.css';
 @import './_common.css';
+@import './section.css';
 @import './scroll-up.css';
 @import './pop-up.css';
 @import './header.css';
@@ -52,4 +53,10 @@
   --categories-accent-cl: #eac645;
   --modal-bg-cl: #202024;
   --modal-border-cl: #fff;
+}
+
+@media only screen and (min-width: 320px) {
+  body {
+    overflow-x: hidden;
+  }
 }

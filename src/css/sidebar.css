@@ -1,0 +1,140 @@
+.side-bar {
+  max-height: 228px;
+
+  font-size: 16px;
+  line-height: 112.5%;
+
+  overflow-y: scroll;
+}
+
+@media only screen and (max-width: 767px) {
+  .side-bar {
+    margin-bottom: 40px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .side-bar {
+    width: 329px;
+    max-height: 472px;
+
+    font-size: 18px;
+    line-height: 133.333%;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .side-bar {
+    width: 356px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .side-bar-title {
+    margin-bottom: 32px;
+  }
+}
+
+.side-bar-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+@media only screen and (min-width: 768px) {
+  .side-bar-list {
+    gap: 32px;
+  }
+}
+
+.side-bar-btn {
+  cursor: pointer;
+  display: block;
+  border: none;
+  background-color: inherit;
+  padding: 0;
+  margin: 0;
+
+  color: var(--categories-txt-cl);
+  font-weight: 400;
+  letter-spacing: -0.32px;
+  text-align: start;
+}
+
+.side-bar-btn:hover,
+.side-bar-btn:focus {
+  color: var(--light-theme-accent-cl);
+
+  transition-duration: 250ms;
+}
+
+.current-category {
+  color: var(--light-theme-accent-cl);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/*! СПІЛЬНО З BEST-SELLERS */
+
+.card-set-item {
+  height: 535px;
+}
+
+@media only screen and (min-width: 768px) {
+  .card-set-item {
+    height: 366px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .card-set-item {
+    height: 306px;
+  }
+}
+
+.wrapper-img {
+  margin: 0 auto;
+  margin-bottom: 14px;
+  width: 335px;
+  height: 485px;
+}
+
+@media only screen and (min-width: 768px) {
+  .wrapper-img {
+    width: 218px;
+    height: 316px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .wrapper-img {
+    width: 180px;
+    height: 256px;
+  }
+}
+
+.card-set-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 8px;
+}
+
+.card-set-title {
+  margin-bottom: 4px;
+
+  color: var(--light-theme-main-txt-cl);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 112.5%;
+  letter-spacing: -0.64px;
+  text-transform: uppercase;
+}
+
+.card-set-author {
+  color: var(--secondary-txt-cl);
+  font-size: 12px;
+  font-style: italic;
+  line-height: 116.667%;
+  letter-spacing: -0.48px;
+}
