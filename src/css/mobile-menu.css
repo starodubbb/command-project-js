@@ -38,7 +38,7 @@ svg {
   display: none;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 767px) {
   .header-mobile {
     position: absolute;
     top: 0;
@@ -52,8 +52,7 @@ svg {
         #fff 100%
       );
     background-repeat: no-repeat;
-    background-position: 0 130%, 0 0;
-    background-size: contain;
+    background-size: 100%;
     padding: 84px 20px 380px;
     display: block;
     transition: 0.3s;
@@ -92,8 +91,15 @@ svg {
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 767px) {
   .header-mobile {
-    background-position: 0 100%;
+    background-position: 0 300px, 0 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header-mobile {
+    background-position: 50% 123%, 0 0;
+    background-size: 480px, 100%;
   }
 }
