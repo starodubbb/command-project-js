@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bookshelf</title>
-    <link rel="stylesheet" href="./css/index.css" />
-    <script type="module" src="./js/shopping-list-page.js"></script>
-  </head>
-  <body>
-    <!-- Header -->
-    <include src="./partials/header.html"></include>
-    <main>
-      <section class="section">
-        <div class="container">
-          <div class="sidebar-support-wrapper">
-            <!-- Sidebar -->
-            <include src="./partials/sidebar.html"></include>
-          </div>
-          <div class="shopping-list">
-            <!-- .................. -->
-          </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bookshelf</title>
+  <link rel="stylesheet" href="./css/index.css" />
+  <script type="module" src="./js/shopping-list-page.js"></script>
+</head>
+
+<body>
+  <!-- Header -->
+  <include src="./partials/header.html"></include>
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="sidebar-support-wrapper">
+          <!-- Sidebar -->
+          <include src="./partials/sidebar.html"></include>
         </div>
-      </section>
-    </main>
-    <!-- Scroll-up -->
-    <include src="./partials/scroll-up.html"></include>
-    <!-- Mobile menu -->
-    <include src="./partials/mobile-menu.html"></include>
-  </body>
+        <div class="shopping-list">
+          <!-- .................. -->
+          <include src="./partials/shopping-list.html"></include>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Scroll-up -->
+  <include src="./partials/scroll-up.html"></include>
+  <!-- Mobile menu -->
+  <include src="./partials/mobile-menu.html"></include>
+</body>
+
 </html>
