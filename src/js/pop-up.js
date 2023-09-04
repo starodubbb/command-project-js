@@ -35,7 +35,6 @@ function onBookClick(event) {
 
   const bookId = bookElement.getAttribute('data-id');
   if (bookId) {
-    console.log('Клік на книзі з ID:', bookId);
     loadBookDetails(bookId);
   }
 }
@@ -76,7 +75,6 @@ async function loadBookDetails(bookId) {
       modalNote.textContent = ''; // Пустий текст, якщо книга не додана до списку покупок
     }
   } catch (error) {
-    console.error('Помилка завантаження даних книги:', error);
 
     currentBookData = {};
   }
@@ -130,7 +128,8 @@ function onClickBtnAdd() {
       modalNote.textContent = ''; // Пустий текст, якщо книга видалена зі списку покупок
     }
   } else {
-    console.error('Дані про книгу відсутні.');
+    const errorElement = document.querySelector('.error-message');
+    errorElement.textContent = 'Помилка: дані про книгу відсутні.';
   }
 }
 
@@ -141,6 +140,7 @@ function openModal() {
   backdrop.classList.remove('is-hidden');
   modal.classList.remove('is-hidden');
   disableBodyScroll();
+
 
   if (isBookAddedToShoppingList) {
     document.querySelector('.modal-btn-add').textContent =
@@ -205,7 +205,7 @@ function markupModal(bookData) {
               alt="Buy on Amazon"
               width="62"
               height="19"
-              class="modal-book-seller amazon"
+              class="modal-book-seller"
             /></a>
           </li>
           <li class="modal-book-el">
@@ -235,7 +235,7 @@ function markupModal(bookData) {
               alt="Book shop"
               width="38"
               height="36"
-              class="modal-book-seller "
+              class="modal-book-seller"
             /></a>
           </li>
         </ul>

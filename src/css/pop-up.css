@@ -1,3 +1,4 @@
+
 .backdrop {
   position: fixed;
   z-index: 100;
@@ -7,8 +8,8 @@
   height: 100%;
   overflow: scroll;
   background-color: rgba(17, 17, 17, 0.4);
-  transition: opacity var(--transition-property),
-    visibility var(--transition-property);
+  transition: var(--anim-active);
+    
 }
 
 .is-hidden {
@@ -17,14 +18,15 @@
 
 .modal-window {
   width: 100%;
-  background-color: var(--modal-bg-cl);
-  border: 2px solid var(--modal-border-cl);
+  background-color: #fff;
+  border: 2px solid #111;
   border-radius: 20px;
   position: fixed;
-  top: 50%;
+  top: 25px;
   left: 50%;
-  overflow: auto;
-  transform: translate(-50%, -50%);
+  overflow: scroll;
+  /* transform: translate(-50%, -50%); */
+  transform: translateX(-50%);
   padding: 40px 24px;
 }
 
@@ -36,12 +38,16 @@
 @media screen and (min-width: 335px) {
   .modal-window {
     width: 335px;
+
   }
 }
 
 @media screen and (min-width: 768px) {
   .modal-window {
     width: 579px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -68,7 +74,7 @@
 
 .modal-close-btn:hover .modal-close-icon,
 .modal-close-btn:focus .modal-close-icon {
-  stroke: var(--fill-cl);
+    stroke: var(--fill-cl);
 }
 
 .modal-content {
@@ -86,6 +92,8 @@
   }
 }
 
+
+
 .modal-book-descr {
   margin-top: 14px;
 }
@@ -95,11 +103,12 @@
     width: 192px;
     height: 281px;
   }
-
+  
   .modal-book-descr {
     margin-top: 0;
   }
 }
+
 
 .modal-book-title {
   font-size: 16px;
@@ -122,17 +131,20 @@
   width: 287px;
   height: 70px;
   font-style: normal;
-  overflow-y: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   line-height: 1.29;
   letter-spacing: -0.56px;
 }
+
+
 
 .modal-book-links {
   margin-top: 14px;
 }
 
 .modal-btn-add {
-  background-color: var(--modal-bg-cl);
+  background-color: #fff;
   min-width: 211px;
   display: block;
   margin: 0 auto;
@@ -146,21 +158,22 @@
   line-height: 1.29;
   letter-spacing: -0.14px;
   text-transform: uppercase;
-  color: var(--light-theme-main-txt-cl);
 }
 
-.modal-btn-add:hover,
-.modal-btn-add:focus,
-.modal-btn-add:active {
+
+.modal-btn-add:hover, .modal-btn-add:focus, .modal-btn-add:active {
   background-color: var(--fill-cl);
   color: #ffffff;
 }
 
 @media screen and (min-width: 768px) {
   .modal-book-title {
-    font-size: 24px;
-    line-height: 1.17;
-    letter-spacing: -0.96px;
+  display: block;
+  max-width: 280px;
+
+  font-size: 24px;
+  line-height: 1.17;
+  letter-spacing: -0.96px;
   }
 
   .modal-book-author {
@@ -169,20 +182,23 @@
     line-height: 1.29;
     letter-spacing: -0.56px;
   }
-  .modal-book-review {
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.29;
-  }
-
-  .modal-btn-add {
-    padding: 20px 0px;
-    width: 499px;
-    font-size: 18px;
-    line-height: 1.33;
-    letter-spacing: -0.18px;
-  }
+.modal-book-review {
+font-style: normal;
+font-weight: 400;
+line-height: 1.29;
 }
+
+.modal-btn-add {
+
+  padding: 20px 0px;
+  width: 499px;
+font-size: 18px;
+line-height: 1.33;
+letter-spacing: -0.18px;
+}
+  
+}
+
 
 .modal-book-list {
   display: flex;
@@ -194,27 +210,22 @@
   margin-bottom: 0;
 }
 
+
+
 .modal-book-seller {
-  filter: grayscale(100%);
+filter: grayscale(100%);
 }
 
 .modal-book-link:hover .modal-book-seller {
-  filter: grayscale(100%) drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.35));
-}
+  filter: grayscale(100%) drop-shadow(0px 3px 3px rgba(0,0,0,.35));
 
-.dark .amazon {
-  filter: brightness(0) invert();
-}
-
-.dark .amazon:hover {
-  filter: brightness(0) invert() drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.35));
 }
 
 .modal-note {
   display: block;
   margin: 8px auto 0;
   width: 242px;
-  color: rgba(17, 17, 17, 0.5);
+  color: rgba(17, 17, 17, 0.50);
   text-align: center;
   font-size: 10px;
   font-style: normal;
@@ -224,10 +235,10 @@
 }
 @media screen and (min-width: 768px) {
   .modal-note {
-    width: 324px;
-    font-size: 12px;
-    font-style: normal;
-    line-height: 1.17;
-    letter-spacing: -0.48px;
+  width: 324px;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: -0.48px;
   }
 }
