@@ -205,7 +205,7 @@ function markupModal(bookData) {
               alt="Buy on Amazon"
               width="62"
               height="19"
-              class="modal-book-seller"
+              class="modal-book-seller amazon"
             /></a>
           </li>
           <li class="modal-book-el">
@@ -235,7 +235,7 @@ function markupModal(bookData) {
               alt="Book shop"
               width="38"
               height="36"
-              class="modal-book-seller"
+              class="modal-book-seller "
             /></a>
           </li>
         </ul>
