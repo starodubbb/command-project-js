@@ -49,8 +49,8 @@ async function renderMarkupBook(category) {
     .map(({ book_image, title, author, _id }) => {
       return `<li class="card-set-item" data-id="${_id}">
 	 <button class="side-bar-btn" type="button"><div class="wrapper-img"><img class="card-set-img" src="${book_image}" alt=""></div>
-	  <p class="card-set-title">${title}</p>
-	  <p class="card-set-author">${author}</p></li></button>`;
+	  <h4 class="card-set-title ellipsis">${title}</h4>
+	  <p class="card-set-author ellipsis">${author}</p></li></button>`;
     })
     .join('');
 

@@ -1,95 +1,78 @@
 import { fetchCategoryList, fetchParticularCategory } from './service-api';
 
-document.addEventListener('DOMContentLoaded', renderBestSellers);
-export function renderBestSellers() {
+renderBestSellers();
+
+export async function renderBestSellers() {
   const categoryContainer = document.querySelector('.books-container');
 
   // Отримуємо доступ до категорій книг за допомогою API
-  fetch('https://books-backend.p.goit.global/books/category-list')
-    .then(response => response.json())
-    .then(categories => {
-      const categoriesList = document.createElement('ul');
-      categoriesList.classList.add('list');
-      categoriesList.classList.add('categories-list');
+  const categories = await fetchCategoryList();
+  console.log(categories);
 
-      categories.forEach(category => {
-        const categoryElement = document.createElement('li');
-        categoryElement.classList.add('category');
+  const categoriesList = document.createElement('ul');
+  categoriesList.classList.add('list');
+  categoriesList.classList.add('categories-list');
 
-        const categoryTitleElement = document.createElement('h3');
-        categoryTitleElement.textContent = category.list_name;
-        categoryTitleElement.classList.add('category-item');
-        categoryElement.appendChild(categoryTitleElement);
+  categories.forEach(async category => {
+    const categoryElement = document.createElement('li');
+    categoryElement.classList.add('category');
 
-        // Отримуємо популярні книги для кожної категорії
-        fetch(
-          `https://books-backend.p.goit.global/books/category?category=${category.list_name}`
-        )
-          .then(response => response.json())
-          .then(data => {
-            const books = data;
+    const categoryTitleElement = document.createElement('h3');
+    categoryTitleElement.textContent = category.list_name;
+    categoryTitleElement.classList.add('category-item');
+    categoryElement.appendChild(categoryTitleElement);
 
-            if (books.length > 0) {
-              const bookListElement = document.createElement('ul');
-              bookListElement.classList.add('card-set');
-              bookListElement.classList.add('book-list');
+    // Отримуємо популярні книги для кожної категорії
+    const books = await fetchParticularCategory(category.list_name);
+    if (books.length > 0) {
+      const bookListElement = document.createElement('ul');
+      bookListElement.classList.add('card-set');
+      bookListElement.classList.add('book-list');
 
-              books.slice(0, 5).forEach(book => {
-                const bookItemElement = createBookItemElement(book);
-                bookListElement.appendChild(bookItemElement);
-              });
+      books.slice(0, 5).forEach(book => {
+        const bookItemElement = createBookItemElement(book);
+        bookListElement.appendChild(bookItemElement);
+      });
 
-              categoryElement.appendChild(bookListElement);
-              const bookBestItemElements =
-                document.querySelectorAll('.card-set-item');
-              bookBestItemElements.forEach(bookBestItem => {
-                bookBestItem.addEventListener('click', () => {
-                  //   const bookId = bookBestItem.id;
-                  //   openModal(bookId);
-                });
-              });
+      categoryElement.appendChild(bookListElement);
+      const bookBestItemElements = document.querySelectorAll('.card-set-item');
+      bookBestItemElements.forEach(bookBestItem => {
+        bookBestItem.addEventListener('click', () => {
+          //   const bookId = bookBestItem.id;
+          //   openModal(bookId);
+        });
+      });
 
-              if (books.length > 5) {
-                const seeMoreButtonElement = document.createElement('button');
-                seeMoreButtonElement.classList.add('btn');
-                seeMoreButtonElement.textContent = 'See More';
-                seeMoreButtonElement.classList.add('see-more-button');
-                categoryElement.appendChild(seeMoreButtonElement);
+      if (books.length > 5) {
+        const seeMoreButtonElement = document.createElement('button');
+        seeMoreButtonElement.classList.add('btn');
+        seeMoreButtonElement.textContent = 'See More';
+        seeMoreButtonElement.classList.add('see-more-button');
+        categoryElement.appendChild(seeMoreButtonElement);
 
-                seeMoreButtonElement.addEventListener('click', () => {
-                  const bookListElement =
-                    categoryElement.querySelector('.card-set');
+        seeMoreButtonElement.addEventListener('click', () => {
+          const bookListElement = categoryElement.querySelector('.card-set');
 
-                  books.slice(5).forEach(book => {
-                    const bookItemElement = createBookItemElement(book);
-                    bookListElement.appendChild(bookItemElement);
-                  });
-
-                  seeMoreButtonElement.remove(); // Видалити кнопку "See More" після додавання нових книг
-                });
-              }
-            } else {
-              const noBooksMessageElement = document.createElement('p');
-              noBooksMessageElement.textContent =
-                'Немає популярних книг для цієї категорії';
-              categoryElement.appendChild(noBooksMessageElement);
-            }
-          })
-          .catch(error => {
-            console.log(
-              `Сталася помилка при отриманні даних для категорії "${category.list_name}" з API:`,
-              error
-            );
+          books.slice(5).forEach(book => {
+            const bookItemElement = createBookItemElement(book);
+            bookListElement.appendChild(bookItemElement);
           });
 
-        categoriesList.appendChild(categoryElement);
-      });
-      categoryContainer.appendChild(categoriesList);
-    })
-    .catch(error => {
-      console.log('Сталася помилка при отриманні даних з API:', error);
-    });
+          seeMoreButtonElement.remove(); // Видалити кнопку "See More" після додавання нових книг
+        });
+      }
+    } else {
+      const noBooksMessageElement = document.createElement('p');
+      noBooksMessageElement.textContent =
+        'Немає популярних книг для цієї категорії';
+      categoryElement.appendChild(noBooksMessageElement);
+    }
+
+    categoriesList.appendChild(categoryElement);
+  });
+  categoryContainer.appendChild(categoriesList);
 }
+
 function createBookItemElement(book) {
   const bookItemElement = document.createElement('li');
   bookItemElement.classList.add('card-set-item');
