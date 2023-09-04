@@ -14,7 +14,7 @@ const bestSellerBooks = document.querySelector('.books-container');
 
 bestSellerBooks.addEventListener('click', onBookClick);
 
-modal.addEventListener('click', (evt) => {
+modal.addEventListener('click', evt => {
   evt.stopPropagation();
 });
 
@@ -45,9 +45,12 @@ async function loadBookDetails(bookId) {
     const bookData = await fetchBookById(bookId);
     currentBookData = bookData;
 
-    const shoppingList = JSON.parse(localStorage.getItem('shopping-list')) || [];
+    const shoppingList =
+      JSON.parse(localStorage.getItem('shopping-list')) || [];
 
-    const isBookInShoppingList = shoppingList.some(item => item._id === bookData._id);
+    const isBookInShoppingList = shoppingList.some(
+      item => item._id === bookData._id
+    );
 
     const modalHTML = markupModal(bookData);
 
@@ -62,11 +65,12 @@ async function loadBookDetails(bookId) {
     const btnAddEl = document.querySelector('.modal-btn-add');
     btnAddEl.addEventListener('click', onClickBtnAdd);
 
-    const modalNote = document.querySelector('.modal-note'); 
+    const modalNote = document.querySelector('.modal-note');
 
     if (isBookInShoppingList) {
       btnAddEl.textContent = 'REMOVE FROM THE SHOPPING LIST';
-      modalNote.textContent = 'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+      modalNote.textContent =
+        'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
     } else {
       btnAddEl.textContent = 'ADD TO SHOPPING LIST';
       modalNote.textContent = ''; // Пустий текст, якщо книга не додана до списку покупок
@@ -93,25 +97,36 @@ function saveData(data) {
 function onClickBtnAdd() {
   if (currentBookData) {
     const bookDataToStore = currentBookData;
-    const arrFromLocalStorage = JSON.parse(localStorage.getItem('shopping-list')) || [];
+    const arrFromLocalStorage =
+      JSON.parse(localStorage.getItem('shopping-list')) || [];
 
-    const isBookInLocalStorage = arrFromLocalStorage.some(item => item._id === bookDataToStore._id);
+    const isBookInLocalStorage = arrFromLocalStorage.some(
+      item => item._id === bookDataToStore._id
+    );
 
     if (!isBookInLocalStorage) {
       arrFromLocalStorage.push(bookDataToStore);
-      localStorage.setItem('shopping-list', JSON.stringify(arrFromLocalStorage));
+      localStorage.setItem(
+        'shopping-list',
+        JSON.stringify(arrFromLocalStorage)
+      );
 
-      document.querySelector('.modal-btn-add').textContent = 'REMOVE FROM THE SHOPPING LIST';
+      document.querySelector('.modal-btn-add').textContent =
+        'REMOVE FROM THE SHOPPING LIST';
 
-      const modalNote = document.querySelector('.modal-note'); 
-      modalNote.textContent = 'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
+      const modalNote = document.querySelector('.modal-note');
+      modalNote.textContent =
+        'Congratulations! You have added the book to the shopping list. To delete, press the button “Remove from the shopping list”.';
     } else {
-      const filteredArr = arrFromLocalStorage.filter(item => item._id !== bookDataToStore._id);
+      const filteredArr = arrFromLocalStorage.filter(
+        item => item._id !== bookDataToStore._id
+      );
       localStorage.setItem('shopping-list', JSON.stringify(filteredArr));
 
-      document.querySelector('.modal-btn-add').textContent = 'ADD TO SHOPPING LIST';
+      document.querySelector('.modal-btn-add').textContent =
+        'ADD TO SHOPPING LIST';
 
-      const modalNote = document.querySelector('.modal-note'); 
+      const modalNote = document.querySelector('.modal-note');
       modalNote.textContent = ''; // Пустий текст, якщо книга видалена зі списку покупок
     }
   } else {
@@ -125,12 +140,14 @@ function openModal() {
   console.log('Модальне вікно відкрито');
   backdrop.classList.remove('is-hidden');
   modal.classList.remove('is-hidden');
-  disableBodyScroll(); 
+  disableBodyScroll();
 
   if (isBookAddedToShoppingList) {
-    document.querySelector('.modal-btn-add').textContent = 'REMOVE FROM THE SHOPPING LIST';
+    document.querySelector('.modal-btn-add').textContent =
+      'REMOVE FROM THE SHOPPING LIST';
   } else {
-    document.querySelector('.modal-btn-add').textContent = 'ADD TO SHOPPING LIST';
+    document.querySelector('.modal-btn-add').textContent =
+      'ADD TO SHOPPING LIST';
   }
 }
 
@@ -158,7 +175,7 @@ function onEscapeKey(evt) {
 function closeModal() {
   modal.classList.add('is-hidden');
   backdrop.classList.add('is-hidden');
-  enableBodyScroll(); 
+  enableBodyScroll();
   document.removeEventListener('keydown', onEscapeKey);
   backdrop.removeEventListener('click', onBackdropClick);
 }
