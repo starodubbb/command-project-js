@@ -1,4 +1,5 @@
 import { fetchCategoryList, fetchParticularCategory } from './service-api';
+import { renderBestSellers } from './best-sellers';
 
 const sideBarEl = document.querySelector('.side-bar');
 const sideBarListEl = document.querySelector('.side-bar-list');
@@ -11,8 +12,11 @@ startRender();
 async function startRender() {
   const data = await fetchCategoryList();
 
-  const markupTitle = `<li><button class="side-bar-btn current-category" type="button">All categories</button></li>`;
+  const markupTitle = `<li><button class="side-bar-btn current-category" type="button" data-all-categories>All categories</button></li>`;
   sideBarListEl.insertAdjacentHTML('afterbegin', markupTitle);
+
+  const allCategoriesBtn = document.querySelector('[data-all-categories]');
+  allCategoriesBtn.addEventListener('click', renderBestSellers);
 
   renderMarkupList(data);
 }

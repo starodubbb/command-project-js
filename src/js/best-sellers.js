@@ -1,5 +1,7 @@
-// import { fetchTopBooks } from `./service-api`;
-document.addEventListener('DOMContentLoaded', function () {
+import { fetchCategoryList, fetchParticularCategory } from './service-api';
+
+document.addEventListener('DOMContentLoaded', renderBestSellers);
+export function renderBestSellers() {
   const categoryContainer = document.querySelector('.books-container');
 
   // Отримуємо доступ до категорій книг за допомогою API
@@ -29,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (books.length > 0) {
               const bookListElement = document.createElement('ul');
+              bookListElement.classList.add('card-set');
               bookListElement.classList.add('book-list');
 
               books.slice(0, 5).forEach(book => {
@@ -38,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
               categoryElement.appendChild(bookListElement);
               const bookBestItemElements =
-                document.querySelectorAll('.book-item');
+                document.querySelectorAll('.card-set-item');
               bookBestItemElements.forEach(bookBestItem => {
                 bookBestItem.addEventListener('click', () => {
                   //   const bookId = bookBestItem.id;
@@ -48,13 +51,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
               if (books.length > 5) {
                 const seeMoreButtonElement = document.createElement('button');
+                seeMoreButtonElement.classList.add('btn');
                 seeMoreButtonElement.textContent = 'See More';
                 seeMoreButtonElement.classList.add('see-more-button');
                 categoryElement.appendChild(seeMoreButtonElement);
 
                 seeMoreButtonElement.addEventListener('click', () => {
                   const bookListElement =
-                    categoryElement.querySelector('.book-list');
+                    categoryElement.querySelector('.card-set');
 
                   books.slice(5).forEach(book => {
                     const bookItemElement = createBookItemElement(book);
@@ -85,10 +89,10 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch(error => {
       console.log('Сталася помилка при отриманні даних з API:', error);
     });
-});
-
+}
 function createBookItemElement(book) {
   const bookItemElement = document.createElement('li');
+  bookItemElement.classList.add('card-set-item');
   bookItemElement.classList.add('book-item');
   bookItemElement.classList.add('link');
   bookItemElement.dataset.id = `${book._id}`;
