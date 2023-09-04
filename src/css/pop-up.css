@@ -1,4 +1,3 @@
-
 .backdrop {
   position: fixed;
   z-index: 100;
@@ -8,13 +7,15 @@
   height: 100%;
   overflow: scroll;
   background-color: rgba(17, 17, 17, 0.4);
-  transition: var(--anim-active);
-    
+  transition: opacity var(--anim-active), visibility var(--anim-active);
 }
 
-.is-hidden {
-  display: none;
+.backdrop.is-hidden {
+  opacity: 0.5;
+  visibility: hidden;
+  pointer-events: none;
 }
+
 
 .modal-window {
   width: 100%;
@@ -24,16 +25,19 @@
   position: fixed;
   top: 25px;
   left: 50%;
-  overflow: scroll;
+  /* overflow: scroll; */
   /* transform: translate(-50%, -50%); */
   transform: translateX(-50%);
   padding: 40px 24px;
+  transition: transform var(--anim-active), opacity var(--anim-active);
 }
 
-/* @media screen and (min-width: 768px) and (max-width:1157px) */
-/* Desktop styles */
+  .backdrop.is-hidden .modal-window {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+ 
+}
 
-/* @media screen and (min-width: 1158px)  */
 
 @media screen and (min-width: 335px) {
   .modal-window {
@@ -64,12 +68,14 @@
   background-color: var(--border-color);
   border: none;
   cursor: pointer;
-  transition: background-color var(--transition-property),
-    border var(--transition-property);
+
+
+  
 }
 
 .modal-close-icon {
   stroke: var(--light-theme-main-txt-cl);
+  transition: stroke var(--anim-active);
 }
 
 .modal-close-btn:hover .modal-close-icon,
@@ -158,6 +164,7 @@
   line-height: 1.29;
   letter-spacing: -0.14px;
   text-transform: uppercase;
+  transition: background-color var(--anim-active), color var(--anim-active);
 }
 
 
@@ -214,6 +221,7 @@ letter-spacing: -0.18px;
 
 .modal-book-seller {
 filter: grayscale(100%);
+transition: filter var(--anim-active);
 }
 
 .modal-book-link:hover .modal-book-seller {

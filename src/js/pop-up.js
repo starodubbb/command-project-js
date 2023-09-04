@@ -30,7 +30,7 @@ function enableBodyScroll() {
 }
 
 function onBookClick(event) {
-  const bookElement = event.target.closest('.book-item');
+  const bookElement = event.target.closest('.card-set-item');
   if (!bookElement) return;
 
   const bookId = bookElement.getAttribute('data-id');
