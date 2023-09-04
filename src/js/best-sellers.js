@@ -1,6 +1,7 @@
 import { fetchCategoryList, fetchParticularCategory } from './service-api';
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', renderBestSellers);
+export function renderBestSellers() {
   const categoryContainer = document.querySelector('.books-container');
 
   // Отримуємо доступ до категорій книг за допомогою API
@@ -88,8 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch(error => {
       console.log('Сталася помилка при отриманні даних з API:', error);
     });
-});
-
+}
 function createBookItemElement(book) {
   const bookItemElement = document.createElement('li');
   bookItemElement.classList.add('card-set-item');
