@@ -136,7 +136,6 @@ function onClickBtnAdd() {
 let isBookAddedToShoppingList = false;
 
 function openModal() {
-  console.log('Модальне вікно відкрито');
   backdrop.classList.remove('is-hidden');
   modal.classList.remove('is-hidden');
   disableBodyScroll();
