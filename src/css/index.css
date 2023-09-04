@@ -15,9 +15,11 @@
   --main-font: 'DM Sans', sans-serif;
 
   /* BG color */
-  --light-bg-cl: #d0d0d0;
+  --light-bg-cl: #f6f6f6;
   --dark-bg-cl: #202024;
   --header-cl: #fff;
+  --modal-bg-cl: #fff;
+  --modal-border-cl: #111;
 
   /* Text color */
   --light-theme-main-txt-cl: #111111;
@@ -48,4 +50,6 @@
   --light-theme-main-txt-cl: #fff;
   --light-bg-cl: #202024;
   --categories-accent-cl: #eac645;
+  --modal-bg-cl: #202024;
+  --modal-border-cl: #fff;
 }
