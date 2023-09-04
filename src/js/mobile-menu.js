@@ -8,6 +8,18 @@ for (let i = 0; i < anchorRef.length; i++) {
   anchorRef[i].addEventListener('click', doit);
 }
 
+window
+  .matchMedia('(min-width: 768px)')
+  .addEventListener('change', onMatchMedia);
+
+function onMatchMedia(e) {
+  if (!e.matches) return;
+  btnMenu.setAttribute('aria-expanded', false);
+  btnMenu.classList.remove('is-open');
+  headerMobile.classList.remove('show');
+  bodyRef.classList.remove('overflow-hidden');
+}
+
 function doit() {
   const expanded = btnMenu.getAttribute('aria-expanded') === 'true' || false;
   btnMenu.setAttribute('aria-expanded', !expanded);
