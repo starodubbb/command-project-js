@@ -5,6 +5,20 @@
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .sidebar-support-wrapper {
+    margin-bottom: 40px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .sidebar-support-wrapper {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 100px;
+  }
+}
+
 @media only screen and (min-width: 1440px) {
   .sidebar-support-wrapper {
     display: flex;
