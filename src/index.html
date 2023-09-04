@@ -1,37 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookshelf</title>
+    <link rel="stylesheet" href="./css/index.css" />
+    <script type="module" src="./js/index.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bookshelf</title>
-  <link rel="stylesheet" href="./css/index.css" />
-  <script type="module" src="./js/index.js"></script>
-</head>
-
-<body>
-  <!-- Header -->
-  <include src="./partials/header.html"></include>
-  <main>
-    <section class="section">
-      <div class="container">
-        <div class="sidebar-support-wrapper">
-          <!-- Sidebar -->
-          <include src="./partials/sidebar.html"></include>
-          <!-- Foundations -->
-          <include src="./partials/support.html"></include>
+  <body>
+    <!-- Header -->
+    <include src="./partials/header.html"></include>
+    <main>
+      <section class="section">
+        <div class="container">
+          <div class="sidebar-support-wrapper">
+            <!-- Sidebar -->
+            <include src="./partials/sidebar.html"></include>
+            <!-- Foundations -->
+            <include src="./partials/support.html"></include>
+          </div>
+          <!-- Best-sellers -->
+          <include src="./partials/best-sellers.html"></include>
         </div>
-        <!-- Best-sellers -->
-        <include src="./partials/best-sellers.html"></include>
-      </div>
-    </section>
-  </main>
-  <!-- Scroll-up -->
-  <include src="./partials/scroll-up.html"></include>
-  <!-- Modal window -->
-  <include src="./partials/pop-up.html"></include>
-  <!-- Mobile menu -->
-  <include src="./partials/mobile-menu.html"></include>
-</body>
-
+      </section>
+    </main>
+    <!-- Scroll-up -->
+    <include src="./partials/scroll-up.html"></include>
+    <!-- Modal window -->
+    <include src="./partials/pop-up.html"></include>
+    <!-- Mobile menu -->
+    <include src="./partials/mobile-menu.html"></include>
+  </body>
 </html>

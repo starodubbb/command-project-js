@@ -41,14 +41,12 @@ body {
   .container {
     max-width: 1440px;
     padding: 0 24px;
-
-	 display: flex;
   }
 }
 
 @media only screen and (min-width: 768px) {
-   .sidebar-support-wrapper{
-	 margin-bottom: 100px;
+  .sidebar-support-wrapper {
+    margin-bottom: 100px;
   }
 }
 

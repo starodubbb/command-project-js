@@ -1,6 +1,7 @@
 @import './fonts.css';
 @import './reset.css';
 @import './_common.css';
+@import './section.css';
 @import './scroll-up.css';
 @import './pop-up.css';
 @import './header.css';
