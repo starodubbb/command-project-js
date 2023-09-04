@@ -144,7 +144,7 @@ a {
   cursor: pointer;
   border-radius: 50%;
   left: 2.5%;
-  top: 1px;
+  top: 2px;
   bottom: 12.5%;
   right: 52.5%;
 
@@ -157,7 +157,7 @@ a {
 }
 
 .switcher-input:checked + .switcher-slider::before {
-  transform: translateX(23px);
+  transform: translateX(21px);
 }
 
 .header__nav-list {
