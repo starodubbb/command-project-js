@@ -4,6 +4,7 @@ import './support.js';
 import './mobile-menu.js';
 import './service-api.js';
 import './service-pagination-api.js';
+<<<<<<< HEAD
 
 import Pagination from 'tui-pagination';
 
@@ -202,3 +203,10 @@ function firstPageLoaded() {
     createShoppingList();
   }
 }
+=======
+import { setActivePage } from './various-functions.js';
+
+const PAGE = 'shopping-list';
+
+setActivePage(PAGE);
+>>>>>>> 755b393f437675adc2b4a35d29fd2b1ffada0d75

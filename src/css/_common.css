@@ -6,15 +6,21 @@ body {
 
   color: var(--light-theme-main-txt-cl);
   background-color: var(--light-bg-cl);
+  overflow: scroll;
+}
+
+.overflow-hidden {
+  overflow-y: hidden;
 }
 
 .section {
-  padding-top: 40px;
+  padding-top: 104px;
   padding-bottom: 80px;
 }
 
 @media only screen and (min-width: 768px) {
   .section {
+    padding-top: 112px;
     padding-bottom: 100px;
   }
 }
@@ -38,6 +44,12 @@ body {
   }
 }
 
+@media only screen and (min-width: 768px) {
+  .sidebar-support-wrapper {
+    margin-bottom: 100px;
+  }
+}
+
 .btn {
   display: block;
 
@@ -52,7 +64,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   column-gap: var(--len);
   row-gap: 40px;
 }
