@@ -18,7 +18,7 @@
 .modal-window {
   width: 100%;
   background-color: var(--modal-bg-cl);
-  border: 2px solid #111;
+  border: 2px solid var(--modal-border-cl);
   border-radius: 20px;
   position: fixed;
   top: 50%;

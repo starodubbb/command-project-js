@@ -63,13 +63,13 @@
 
 .side-bar-btn:hover,
 .side-bar-btn:focus {
-  color: var(--light-theme-accent-cl);
+  color: var(--categories-accent-cl);
 
   transition-duration: 250ms;
 }
 
 .current-category {
-  color: var(--light-theme-accent-cl);
+  color: var(--categories-accent-cl);
   text-transform: uppercase;
   font-weight: 700;
   font-size: 14px;
