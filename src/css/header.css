@@ -151,9 +151,8 @@
 .switcher {
   display: block;
   position: relative;
-
   width: 40px;
-  height: 20px;
+  height: 24px;
 }
 
 .block {
@@ -187,12 +186,16 @@
   bottom: 12.5%;
   right: 52.5%;
 
-  height: 15px;
-  width: 15px;
+  height: 16px;
+  width: 16px;
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), 0px 2px 2px rgba(0, 0, 0, 0.1),
     1px 2px 4px rgba(0, 0, 0, 0.1);
+}
+.dark .switcher-slider {
+  background: linear-gradient(180deg, #4f2ee8 0%, #686868 100%);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .switcher-input:checked + .switcher-slider::before {
@@ -232,6 +235,10 @@
 
 .icon-burger {
   fill: currentColor;
+}
+
+.header-burger:hover {
+  stroke: var(--fill-cl);
 }
 
 .header-burger .icon-burger-close {
