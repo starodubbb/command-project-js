@@ -7,6 +7,7 @@ const booksContainerEl = document.querySelector('.books-container');
 const cardSetEl = document.querySelector('.card-set');
 const bestSellersTitleEl = document.querySelector('.best-sellers > h2');
 
+
 startRender();
 
 async function startRender() {
@@ -35,11 +36,27 @@ sideBarListEl.addEventListener('click', onRenderMarkup);
 function onRenderMarkup(e) {
   const currentCategory = e.target.textContent;
   const categoriesListEl = document.querySelector('.categories-list');
+  const currentEl = document.querySelector('.current-category');
+  const titleEl = document.querySelector('.card-set-title');
+  
 
+  if (e.currentTarget === e.target) {
+	return;
+  }
+  
   bestSellersTitleEl.innerHTML = '';
   categoriesListEl.innerHTML = '';
 
+  const markupTitle = `${currentCategory}`
+  titleEl.innerHTML = markupTitle;
+  
+
   renderMarkupBook(currentCategory);
+  
+	 if (currentEl) {
+	  currentEl.classList.remove('current-category');
+	 }
+	 e.target.classList.add('current-category')
 }
 
 async function renderMarkupBook(category) {
@@ -49,10 +66,11 @@ async function renderMarkupBook(category) {
     .map(({ book_image, title, author, _id }) => {
       return `<li class="card-set-item" data-id="${_id}">
 	 <button class="side-bar-btn" type="button"><div class="wrapper-img"><img class="card-set-img" src="${book_image}" alt=""></div>
-	  <h4 class="card-set-title ellipsis">${title}</h4>
+	  <h4 class="card-set-book-title ellipsis">${title}</h4>
 	  <p class="card-set-author ellipsis">${author}</p></li></button>`;
     })
     .join('');
+
 
   return (cardSetEl.innerHTML = markupBook);
 }

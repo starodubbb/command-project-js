@@ -15,10 +15,9 @@
 
 @media only screen and (min-width: 768px) {
   .side-bar {
-    width: 329px;
+    width: 337px;
     max-height: 472px;
 
-    font-size: 18px;
     line-height: 133.333%;
   }
 }
@@ -72,7 +71,12 @@
   color: var(--categories-accent-cl);
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+  .current-category {
+  }
 }
 
 /*! СПІЛЬНО З BEST-SELLERS */
@@ -121,6 +125,13 @@
 }
 
 .card-set-title {
+  margin-bottom: 40px;
+
+  line-height: 118.75%;
+  letter-spacing: -1.28px;
+}
+
+.card-set-book-title {
   margin-bottom: 4px;
 
   color: var(--light-theme-main-txt-cl);
