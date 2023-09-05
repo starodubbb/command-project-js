@@ -31,11 +31,7 @@
   margin-top: 40px;
 }
 .book-image {
-  /* width: 335px; */
-  /* height: 485px; */
   border-radius: 8px;
-  /* margin-left: auto; */
-  /* margin-right: auto; */
   object-fit: cover;
 }
 @media (min-width: 768px) {
@@ -46,10 +42,6 @@
 }
 
 @media (min-width: 1440px) {
-  .book-image {
-    /* width: 180px; */
-    /* height: 256px; */
-  }
   .see-more-button {
     margin-right: 40px;
   }
@@ -71,7 +63,6 @@
 .book-item {
   flex-basis: 100%;
   margin-bottom: 0px;
-  /* text-align: center; */
 }
 
 .book-list > .book-item:nth-child(5n) {
@@ -119,7 +110,6 @@
   padding-left: 28px;
   margin-top: 32px;
   margin-left: auto;
-  /* margin-right: 40px; */
 
   font-size: 14px;
   font-style: normal;
