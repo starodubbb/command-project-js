@@ -4,88 +4,72 @@ renderBestSellers();
 
 export async function renderBestSellers() {
   const categoryContainer = document.querySelector('.books-container');
+  renderBookcategories();
+  renderMarkupBooks();
+  // Отримуємо популярні книги для кожної категорії
+}
 
 async function renderBookcategories(category) {
   const data = await fetchCategoryList(category);
 
-  const markupListBook = data.map(({ book_list, title,  _id }) => {
-    return `<ul class="list categories-list"${book_list}>
+  const markupListBook = data
+    .map(({ book_list, title, _id }) => {
+      return `<ul class="list categories-list"${book_list}>
     <li class="card-set-item" data-id="${_id}">
     <h3 class="card-set-book-title ellipsis">${title}</h3>
     </li></ul>`;
- })
-  .join('');
+    })
+    .join('');
 
   return (cardSetEl.innerHTML = markupListBook);
 }
-  // Отримуємо доступ до категорій книг за допомогою API
-  // console.log(categories);
 
-  // const categoriesList = document.createElement('ul');
-  // categoriesList.classList.add('list');
-  // categoriesList.classList.add('categories-list');
+async function renderMarkupBooks(category) {
+  const data = await fetchParticularCategory(category);
+  if (data.length > 0) {
+    const bookListElement = document.createElement('ul');
+    bookListElement.classList.add('card-set');
+    bookListElement.classList.add('list');
 
-  // categories.forEach(async category => {
-  //   const categoryElement = document.createElement('li');
-  //   categoryElement.classList.add('category');
+    data.slice(0, 5).forEach(book => {
+      const bookItemElement = createBookItemElement(book);
+      bookListElement.appendChild(bookItemElement);
+    });
 
-  //   const categoryTitleElement = document.createElement('h3');
-  //   categoryTitleElement.textContent = category.list_name;
-  //   categoryTitleElement.classList.add('category-item');
-  //   categoryElement.appendChild(categoryTitleElement);
+    categoryElement.appendChild(bookListElement);
+    const bookBestItemElements = document.querySelectorAll('.card-set-item');
+    bookBestItemElements.forEach(bookBestItem => {
+      bookBestItem.addEventListener('click', () => {});
+    });
 
-    // Отримуємо популярні книги для кожної категорії
-    async function renderMarkupBooks(category) {
-      const books = await fetchParticularCategory(category);
-      if (books.length > 0) {
-        const bookListElement = document.createElement('ul');
-        bookListElement.classList.add('card-set');
-        bookListElement.classList.add('list');
-  
-        books.slice(0, 5).forEach(book => {
+    if (data.length > 5) {
+      const seeMoreButtonElement = document.createElement('button');
+      seeMoreButtonElement.classList.add('btn');
+      seeMoreButtonElement.textContent = 'See More';
+      seeMoreButtonElement.classList.add('see-more-button');
+      categoryElement.appendChild(seeMoreButtonElement);
+
+      seeMoreButtonElement.addEventListener('click', () => {
+        const bookListElement = categoryElement.querySelector('.card-set');
+
+        data.slice(5).forEach(book => {
           const bookItemElement = createBookItemElement(book);
           bookListElement.appendChild(bookItemElement);
         });
-  
-        categoryElement.appendChild(bookListElement);
-        const bookBestItemElements = document.querySelectorAll('.card-set-item');
-        bookBestItemElements.forEach(bookBestItem => {
-          bookBestItem.addEventListener('click', () => {
-            //   const bookId = bookBestItem.id;
-            //   openModal(bookId);
-          });
-        });
-  
-        if (books.length > 5) {
-          const seeMoreButtonElement = document.createElement('button');
-          seeMoreButtonElement.classList.add('btn');
-          seeMoreButtonElement.textContent = 'See More';
-          seeMoreButtonElement.classList.add('see-more-button');
-          categoryElement.appendChild(seeMoreButtonElement);
-  
-          seeMoreButtonElement.addEventListener('click', () => {
-            const bookListElement = categoryElement.querySelector('.card-set');
-  
-            books.slice(5).forEach(book => {
-              const bookItemElement = createBookItemElement(book);
-              bookListElement.appendChild(bookItemElement);
-            });
-  
-            seeMoreButtonElement.remove(); // Видалити кнопку "See More" після додавання нових книг
-          });
-        }
-      } else {
-        const noBooksMessageElement = document.createElement('p');
-        noBooksMessageElement.textContent =
-          'Немає популярних книг для цієї категорії';
-        categoryElement.appendChild(noBooksMessageElement);
-      }
-  
-      categoriesList.appendChild(categoryElement);
-  
-    categoryContainer.appendChild(categoriesList);
 
-    const markupBook = books
+        seeMoreButtonElement.remove(); // Видалити кнопку "See More" після додавання нових книг
+      });
+    }
+  } else {
+    const noBooksMessageElement = document.createElement('p');
+    noBooksMessageElement.textContent =
+      'Немає популярних книг для цієї категорії';
+    categoryElement.appendChild(noBooksMessageElement);
+  }
+  categoriesList.appendChild(categoryElement);
+  // categoryContainer.appendChild(categoriesList);
+
+  const markupBook = data
     .map(({ book_image, title, author, _id }) => {
       return `<li class="card-set-item" data-id="${_id}">
    <button class="card-set-btn" type="button"><div class="wrapper-img"><img class="card-set-img" src="${book_image}" alt=""></div>
@@ -95,10 +79,8 @@ async function renderBookcategories(category) {
     .join('');
 
   return (cardSetEl.innerHTML = markupBook);
-};
-  }
-    // const books = await fetchParticularCategory(category.list_name);
-   
+}
+// const books = await fetchParticularCategory(category.list_name);
 
 // function createBookItemElement(book) {
 //   const bookItemElement = document.createElement('li');
@@ -127,3 +109,19 @@ async function renderBookcategories(category) {
 
 //   return bookItemElement;
 // }
+
+// Отримуємо доступ до категорій книг за допомогою API
+// console.log(categories);
+
+// const categoriesList = document.createElement('ul');
+// categoriesList.classList.add('list');
+// categoriesList.classList.add('categories-list');
+
+// categories.forEach(async category => {
+//   const categoryElement = document.createElement('li');
+//   categoryElement.classList.add('category');
+
+//   const categoryTitleElement = document.createElement('h3');
+//   categoryTitleElement.textContent = category.list_name;
+//   categoryTitleElement.classList.add('category-item');
+//   categoryElement.appendChild(categoryTitleElement);
