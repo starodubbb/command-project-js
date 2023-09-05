@@ -75,7 +75,6 @@ async function loadBookDetails(bookId) {
       modalNote.textContent = ''; // Пустий текст, якщо книга не додана до списку покупок
     }
   } catch (error) {
-
     currentBookData = {};
   }
 }
@@ -140,7 +139,6 @@ function openModal() {
   modal.classList.remove('is-hidden');
   disableBodyScroll();
 
-
   if (isBookAddedToShoppingList) {
     document.querySelector('.modal-btn-add').textContent =
       'REMOVE FROM THE SHOPPING LIST';
@@ -204,7 +202,7 @@ function markupModal(bookData) {
               alt="Buy on Amazon"
               width="62"
               height="19"
-              class="modal-book-seller"
+              class="modal-book-seller amazon"
             /></a>
           </li>
           <li class="modal-book-el">

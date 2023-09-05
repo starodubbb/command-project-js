@@ -16,33 +16,27 @@
   pointer-events: none;
 }
 
-
 .modal-window {
   width: 100%;
-  background-color: #fff;
-  border: 2px solid #111;
+  background-color: var(--modal-bg-cl);
+  border: 2px solid var(--modal-border-cl);
   border-radius: 20px;
-  position: fixed;
+  position: absolute;
   top: 25px;
   left: 50%;
-  /* overflow: scroll; */
-  /* transform: translate(-50%, -50%); */
   transform: translateX(-50%);
   padding: 40px 24px;
   transition: transform var(--anim-active), opacity var(--anim-active);
 }
 
-  .backdrop.is-hidden .modal-window {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
- 
+.backdrop.is-hidden .modal-window {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.5);
 }
-
 
 @media screen and (min-width: 335px) {
   .modal-window {
     width: 335px;
-
   }
 }
 
@@ -52,6 +46,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+  .backdrop.is-hidden .modal-window {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
   }
 }
 
@@ -68,9 +66,6 @@
   background-color: var(--border-color);
   border: none;
   cursor: pointer;
-
-
-  
 }
 
 .modal-close-icon {
@@ -80,7 +75,7 @@
 
 .modal-close-btn:hover .modal-close-icon,
 .modal-close-btn:focus .modal-close-icon {
-    stroke: var(--fill-cl);
+  stroke: var(--fill-cl);
 }
 
 .modal-content {
@@ -98,8 +93,6 @@
   }
 }
 
-
-
 .modal-book-descr {
   margin-top: 14px;
 }
@@ -109,12 +102,11 @@
     width: 192px;
     height: 281px;
   }
-  
+
   .modal-book-descr {
     margin-top: 0;
   }
 }
-
 
 .modal-book-title {
   font-size: 16px;
@@ -143,14 +135,12 @@
   letter-spacing: -0.56px;
 }
 
-
-
 .modal-book-links {
   margin-top: 14px;
 }
 
 .modal-btn-add {
-  background-color: #fff;
+  background-color: var(--modal-bg-cl);
   min-width: 211px;
   display: block;
   margin: 0 auto;
@@ -164,23 +154,25 @@
   line-height: 1.29;
   letter-spacing: -0.14px;
   text-transform: uppercase;
+  color: var(--light-theme-main-txt-cl);
   transition: background-color var(--anim-active), color var(--anim-active);
 }
 
-
-.modal-btn-add:hover, .modal-btn-add:focus, .modal-btn-add:active {
+.modal-btn-add:hover,
+.modal-btn-add:focus,
+.modal-btn-add:active {
   background-color: var(--fill-cl);
   color: #ffffff;
 }
 
 @media screen and (min-width: 768px) {
   .modal-book-title {
-  display: block;
-  max-width: 280px;
+    display: block;
+    max-width: 280px;
 
-  font-size: 24px;
-  line-height: 1.17;
-  letter-spacing: -0.96px;
+    font-size: 24px;
+    line-height: 1.17;
+    letter-spacing: -0.96px;
   }
 
   .modal-book-author {
@@ -189,23 +181,20 @@
     line-height: 1.29;
     letter-spacing: -0.56px;
   }
-.modal-book-review {
-font-style: normal;
-font-weight: 400;
-line-height: 1.29;
-}
+  .modal-book-review {
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.29;
+  }
 
-.modal-btn-add {
-
-  padding: 20px 0px;
-  width: 499px;
-font-size: 18px;
-line-height: 1.33;
-letter-spacing: -0.18px;
+  .modal-btn-add {
+    padding: 20px 0px;
+    width: 499px;
+    font-size: 18px;
+    line-height: 1.33;
+    letter-spacing: -0.18px;
+  }
 }
-  
-}
-
 
 .modal-book-list {
   display: flex;
@@ -217,23 +206,35 @@ letter-spacing: -0.18px;
   margin-bottom: 0;
 }
 
-
-
 .modal-book-seller {
-filter: grayscale(100%);
-transition: filter var(--anim-active);
+  filter: grayscale(100%);
+  transition: filter var(--anim-active);
 }
 
 .modal-book-link:hover .modal-book-seller {
-  filter: grayscale(100%) drop-shadow(0px 3px 3px rgba(0,0,0,.35));
-
+  /* filter: grayscale(100%) drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.35)); */
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.35));
 }
+
+.dark .modal-book-link:hover .modal-book-seller {
+  filter: drop-shadow(0px 3px 3px rgba(255, 255, 255, 0.35));
+}
+
+.dark .amazon {
+  filter: brightness(0) invert(1);
+  transition: filter var(--anim-active);
+}
+
+/* .dark .amazon:hover {
+  filter: brightness(0) invert() drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0px 3px 3px rgba(255, 255, 255, 0.35));
+} */
 
 .modal-note {
   display: block;
   margin: 8px auto 0;
   width: 242px;
-  color: rgba(17, 17, 17, 0.50);
+  color: rgba(17, 17, 17, 0.5);
   text-align: center;
   font-size: 10px;
   font-style: normal;
@@ -243,10 +244,10 @@ transition: filter var(--anim-active);
 }
 @media screen and (min-width: 768px) {
   .modal-note {
-  width: 324px;
-  font-size: 12px;
-  font-style: normal;
-  line-height: 1.17;
-  letter-spacing: -0.48px;
+    width: 324px;
+    font-size: 12px;
+    font-style: normal;
+    line-height: 1.17;
+    letter-spacing: -0.48px;
   }
 }
