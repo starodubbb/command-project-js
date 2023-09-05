@@ -39,6 +39,8 @@ function onRenderMarkup(e) {
   const currentEl = document.querySelector('.current-category');
   const titleEl = document.querySelector('.card-set-title');
   
+  const arr = currentCategory.split(' ');
+
 
   if (e.currentTarget === e.target) {
 	return;
