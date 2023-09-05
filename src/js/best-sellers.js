@@ -34,7 +34,15 @@ export async function renderBestSellers() {
 
 async function renderBookcategories() {
   const data = await fetchCategoryList();
-
+  // const markupListBook = data
+  //   .map(({ book_list, title, _id }) => {
+  //     return `
+  //     <ul class="list categories-list"${book_list}>
+  //       <h3 class="category-item"></h3>
+  //       <ul class="card-set list"></ul>
+  //     </ul>`;
+  //   })
+  //   .join('');
   categoryContainer.innerHTML = markupListBook;
 }
 
