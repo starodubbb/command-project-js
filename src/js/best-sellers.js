@@ -1,30 +1,52 @@
+// <!-- <ul class="list categories-list">
+//       <li class="category">
+//         <h3 class="category-item"></h3>
+//         <ul class="card-set list">
+//           <li class="card-set-item"></li>
+//           <li class="card-set-item"></li>
+//           <li class="card-set-item"></li>
+//         </ul>
+//       </li>
+//       <li class="category">
+//         <h3 class="category-item"></h3>
+//         <ul class="card-set list">
+//           <li class="card-set-item"></li>
+//           <li class="card-set-item"></li>
+//           <li class="card-set-item"></li>
+//         </ul>
+//       </li>
+//     </ul>
+
 import { fetchCategoryList, fetchParticularCategory } from './service-api';
+
+const categoryContainer = document.querySelector('.books-container');
 
 renderBestSellers();
 
 export async function renderBestSellers() {
-  const categoryContainer = document.querySelector('.books-container');
-  renderBookcategories();
-  renderMarkupBooks();
-  // Отримуємо популярні книги для кожної категорії
+  const categories = await fetchCategoryList();
+  renderBookCategories(categories);
+
+  categories.forEach(async category => {
+    renderMarkupBooksByCategory(category);
+  });
 }
 
-async function renderBookcategories(category) {
-  const data = await fetchCategoryList(category);
+async function renderBookCategories(categories) {
+  // const markupListBook = data
+  //   .map(({ book_list, title, _id }) => {
+  //     return `
+  //     <ul class="list categories-list"${book_list}>
+  //       <h3 class="category-item"></h3>
+  //       <ul class="card-set list"></ul>
+  //     </ul>`;
+  //   })
+  //   .join('');
 
-  const markupListBook = data
-    .map(({ book_list, title, _id }) => {
-      return `<ul class="list categories-list"${book_list}>
-    <li class="card-set-item" data-id="${_id}">
-    <h3 class="card-set-book-title ellipsis">${title}</h3>
-    </li></ul>`;
-    })
-    .join('');
-
-  return (cardSetEl.innerHTML = markupListBook);
+  categoryContainer.innerHTML = markupListBook;
 }
 
-async function renderMarkupBooks(category) {
+async function renderMarkupBooksByCategory(category) {
   const data = await fetchParticularCategory(category);
   if (data.length > 0) {
     const bookListElement = document.createElement('ul');
