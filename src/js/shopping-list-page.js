@@ -55,7 +55,7 @@ function createFullCart(dataUser, page) {
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const itemsOnPage = dataUser.slice(startIndex, endIndex);
-  console.log(itemsOnPage);
+  // console.log(itemsOnPage);
   const markup = itemsOnPage.reduce((acc, book) => {
     return (
       acc +
