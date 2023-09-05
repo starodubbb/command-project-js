@@ -63,7 +63,7 @@
   }
 }
 
-.nav-list-home {
+.nav-list-btn {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -84,8 +84,8 @@
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav-list-home:hover,
-.nav-list-home:focus {
+.nav-list-btn:hover,
+.nav-list-btn:focus {
   background-color: var(--dark-theme-accent-cl);
   color: var(--dark-theme-main-txt-cl);
 }
@@ -93,7 +93,7 @@
 .shopping-list-svg {
   fill: currentColor;
 }
-.nav-list-home.current {
+.nav-list-btn.current {
   background-color: var(--dark-theme-accent-cl);
   font-weight: 700;
 }
@@ -181,7 +181,7 @@
   position: absolute;
   cursor: pointer;
   border-radius: 50%;
-  left: 2.5%;
+  left: 4%;
   top: 2px;
   bottom: 12.5%;
   right: 52.5%;
