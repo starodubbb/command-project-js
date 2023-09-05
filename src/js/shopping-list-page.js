@@ -4,9 +4,12 @@ import './support.js';
 import './mobile-menu.js';
 import './service-api.js';
 import './service-pagination-api.js';
-<<<<<<< HEAD
 
 import Pagination from 'tui-pagination';
+import { setActivePage } from './various-functions.js';
+
+const PAGE = 'shopping-list';
+setActivePage(PAGE);
 
 const refs = {
   emptyBox: document.getElementById('emptyBox'),
@@ -53,77 +56,76 @@ function createFullCart(dataUser, page) {
   const endIndex = startIndex + itemsPerPage;
   const itemsOnPage = dataUser.slice(startIndex, endIndex);
 
-  const markup = itemsOnPage.reduce(
-    (acc, {}) =>
-      acc +
-      ` <li class="item-card" id="${}">
-        <article class="shopping-card" id="shoppingCard">
-            <img class="card-book-images" src="${}"
-                alt="${}" width="100" heigth="142">
-            <div class="card-info">
-                <h2 class="card-book-title">${}</h2>
-                <p class="card-book-categories">${}</p>
-                <p class="card-book-desc">
-                    ${}
-                </p>
-                <div class="card-footer">
-                    <h3 class="card-book-author">${}</h3>
-                    <ul class="list card-book-shops">
-                        <li>
-                            <a href="${}" target="_blank" rel="noopener noreferren">
-                                <picture>
-                                    <source media="(max-width: 767px)"
-                                        srcset="./img/shop-list/amazon-shop_mob@1x.png 1x, ./img/shop-list/amazon-shop_mob@2x.png 2x"
-                                        type="image/png" />
-                                    <source media="(min-width: 768px)"
-                                        srcset="./img/shop-list/amazon-shop_tab@1x.png 1x, ./img/shop-list/amazon-shop_tab@2x.png 2x"
-                                        type="image/png" />
-                                    <img src="./img/shop-list/amazon-shop_mob@1x.png" alt="Amazon shop"
-                                        loading="lazy" />
-                                </picture>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="${}" target="_blank" rel="noopener noreferren">
-                                <picture>
-                                    <source media="(min-width: 320px)"
-                                        srcset="./img/shop-list/apple-shop_mob@1x.png 1x, ./img/shop-list/apple-shop_mob@2x.png 2x"
-                                        type="image/png" />
-                                    <source media="(min-width: 768px)"
-                                        srcset="./img/shop-list/apple-shop_tab@1x.png 1x, ./img/shop-list/apple-shop_tab@2x.png 2x"
-                                        type="image/png" />
-                                    <img src="./img/shop-list/apple-shop_mob@1x.png" alt="Apple shop" loading="lazy" />
-                                </picture>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="${}" target="_blank" rel="noopener noreferren">
-                                <picture>
-                                    <source media="(min-width: 320px)"
-                                        srcset="./img/shop-list/bookshelf-shop_mob@1x.png 1x, ./img/shop-list/bookshelf-shop_mob@2x.png 2x"
-                                        type="image/png" />
-                                    <source media="(min-width: 768px)"
-                                        srcset="./img/shop-list/bookshelf-shop_tab@1x.png 1x, ./img/shop-list/bookshelf-shop_tab@2x.png 2x"
-                                        type="image/png" />
-                                    <img src="./img/shop-list/bookshelf-shop_mob@1x.png" alt="Bookshelf shop"
-                                        loading="lazy" />
-                                </picture>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+  // const markup = itemsOnPage.reduce(
+  //   (acc, {}) =>
+  //     acc +
+  //     ` <li class="item-card" id="${}">
+  //       <article class="shopping-card" id="shoppingCard">
+  //           <img class="card-book-images" src="${}"
+  //               alt="${}" width="100" heigth="142">
+  //           <div class="card-info">
+  //               <h2 class="card-book-title">${}</h2>
+  //               <p class="card-book-categories">${}</p>
+  //               <p class="card-book-desc">
+  //                   ${}
+  //               </p>
+  //               <div class="card-footer">
+  //                   <h3 class="card-book-author">${}</h3>
+  //                   <ul class="list card-book-shops">
+  //                       <li>
+  //                           <a href="${}" target="_blank" rel="noopener noreferren">
+  //                               <picture>
+  //                                   <source media="(max-width: 767px)"
+  //                                       srcset="./img/shop-list/amazon-shop_mob@1x.png 1x, ./img/shop-list/amazon-shop_mob@2x.png 2x"
+  //                                       type="image/png" />
+  //                                   <source media="(min-width: 768px)"
+  //                                       srcset="./img/shop-list/amazon-shop_tab@1x.png 1x, ./img/shop-list/amazon-shop_tab@2x.png 2x"
+  //                                       type="image/png" />
+  //                                   <img src="./img/shop-list/amazon-shop_mob@1x.png" alt="Amazon shop"
+  //                                       loading="lazy" />
+  //                               </picture>
+  //                           </a>
+  //                       </li>
+  //                       <li>
+  //                           <a href="${}" target="_blank" rel="noopener noreferren">
+  //                               <picture>
+  //                                   <source media="(min-width: 320px)"
+  //                                       srcset="./img/shop-list/apple-shop_mob@1x.png 1x, ./img/shop-list/apple-shop_mob@2x.png 2x"
+  //                                       type="image/png" />
+  //                                   <source media="(min-width: 768px)"
+  //                                       srcset="./img/shop-list/apple-shop_tab@1x.png 1x, ./img/shop-list/apple-shop_tab@2x.png 2x"
+  //                                       type="image/png" />
+  //                                   <img src="./img/shop-list/apple-shop_mob@1x.png" alt="Apple shop" loading="lazy" />
+  //                               </picture>
+  //                           </a>
+  //                       </li>
+  //                       <li>
+  //                           <a href="${}" target="_blank" rel="noopener noreferren">
+  //                               <picture>
+  //                                   <source media="(min-width: 320px)"
+  //                                       srcset="./img/shop-list/bookshelf-shop_mob@1x.png 1x, ./img/shop-list/bookshelf-shop_mob@2x.png 2x"
+  //                                       type="image/png" />
+  //                                   <source media="(min-width: 768px)"
+  //                                       srcset="./img/shop-list/bookshelf-shop_tab@1x.png 1x, ./img/shop-list/bookshelf-shop_tab@2x.png 2x"
+  //                                       type="image/png" />
+  //                                   <img src="./img/shop-list/bookshelf-shop_mob@1x.png" alt="Bookshelf shop"
+  //                                       loading="lazy" />
+  //                               </picture>
+  //                           </a>
+  //                       </li>
+  //                   </ul>
+  //               </div>
+  //           </div>
 
-
-            <button id="removedCard" aria-label="remove card" class="remove-card" type="button">
-                <svg class="icon-removed" width="22" height="22">
-                    <use href="./img/icons/removed-card.svg#icon-remove-card"></use>
-                </svg>
-            </button>
-        </article>
-    </li>`,
-    ''
-  );
+  //           <button id="removedCard" aria-label="remove card" class="remove-card" type="button">
+  //               <svg class="icon-removed" width="22" height="22">
+  //                   <use href="./img/icons/removed-card.svg#icon-remove-card"></use>
+  //               </svg>
+  //           </button>
+  //       </article>
+  //   </li>`,
+  //   ''
+  // );
 }
 
 function initPagination(totalItems) {
@@ -203,10 +205,3 @@ function firstPageLoaded() {
     createShoppingList();
   }
 }
-=======
-import { setActivePage } from './various-functions.js';
-
-const PAGE = 'shopping-list';
-
-setActivePage(PAGE);
->>>>>>> 755b393f437675adc2b4a35d29fd2b1ffada0d75
