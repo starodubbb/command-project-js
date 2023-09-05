@@ -149,3 +149,7 @@
   line-height: 116.667%;
   letter-spacing: -0.48px;
 }
+
+.title-accent{
+	color: var(--light-theme-accent-cl);
+}

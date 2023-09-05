@@ -7,7 +7,6 @@ const booksContainerEl = document.querySelector('.books-container');
 const cardSetEl = document.querySelector('.card-set');
 const bestSellersTitleEl = document.querySelector('.best-sellers > h2');
 
-
 startRender();
 
 async function startRender() {
@@ -38,27 +37,24 @@ function onRenderMarkup(e) {
   const categoriesListEl = document.querySelector('.categories-list');
   const currentEl = document.querySelector('.current-category');
   const titleEl = document.querySelector('.card-set-title');
-  
-  const arr = currentCategory.split(' ');
-
 
   if (e.currentTarget === e.target) {
-	return;
+    return;
   }
-  
+
   bestSellersTitleEl.innerHTML = '';
   categoriesListEl.innerHTML = '';
 
-  const markupTitle = `${currentCategory}`
-  titleEl.innerHTML = markupTitle;
   
+  titleEl.innerHTML = renderMarkupTitle(currentCategory);
 
+  renderMarkupTitle(currentCategory);
   renderMarkupBook(currentCategory);
-  
-	 if (currentEl) {
-	  currentEl.classList.remove('current-category');
-	 }
-	 e.target.classList.add('current-category')
+
+  if (currentEl) {
+    currentEl.classList.remove('current-category');
+  }
+  e.target.classList.add('current-category');
 }
 
 async function renderMarkupBook(category) {
@@ -73,6 +69,13 @@ async function renderMarkupBook(category) {
     })
     .join('');
 
-
   return (cardSetEl.innerHTML = markupBook);
+}
+
+function renderMarkupTitle(category) {
+  const arrayWords = category.split(" ");
+  const numberWord = arrayWords.length - 1;
+  const notCompleteArr = arrayWords.slice(0, numberWord).join(" ");
+
+return `${notCompleteArr} <span class="title-accent">${arrayWords[numberWord]}</span>`
 }
