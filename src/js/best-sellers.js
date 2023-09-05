@@ -25,29 +25,30 @@ renderBestSellers();
 
 export async function renderBestSellers() {
   const categories = await fetchCategoryList();
-  renderBookCategories(categories);
+  renderMarkupBooks(categories);
 
   categories.forEach(async category => {
     renderMarkupBooksByCategory(category);
   });
 }
 
-async function renderBookcategories() {
+async function renderMarkupBooksByCategory() {
   const data = await fetchCategoryList();
-  // const markupListBook = data
-  //   .map(({ book_list, title, _id }) => {
-  //     return `
-  //     <ul class="list categories-list"${book_list}>
-  //       <h3 class="category-item"></h3>
-  //       <ul class="card-set list"></ul>
-  //     </ul>`;
-  //   })
-  //   .join('');
+  const markupListBook = data
+    .map(({ _list, li, title, _ul }) => {
+      return `
+      <ul class="list categories-list" data-id="${_list}">
+        <li class="category">${li}</li>
+        <h3 class="category-item">${title}</h3>
+        <ul class="card-set list">${_ul}</ul>
+       </ul>`;
+    })
+    .join('');
   categoryContainer.innerHTML = markupListBook;
 }
 
-async function renderMarkupBooksByCategory(category) {
-  const data = await fetchParticularCategory(category);
+async function renderMarkupBooks(category, cardSetEl) {
+  const data = await fetchParticularCategory(category.list_name);
   if (data.length > 0) {
     const bookListElement = document.createElement('ul');
     bookListElement.classList.add('card-set');
@@ -89,13 +90,13 @@ async function renderMarkupBooksByCategory(category) {
     categoryElement.appendChild(noBooksMessageElement);
   }
   categoriesList.appendChild(categoryElement);
-  // categoryContainer.appendChild(categoriesList);
+  categoryContainer.appendChild(categoriesList);
 
   const markupBook = data
     .map(({ book_image, title, author, _id }) => {
       return `<li class="card-set-item" data-id="${_id}">
    <button class="card-set-btn" type="button"><div class="wrapper-img"><img class="card-set-img" src="${book_image}" alt=""></div>
-    <h4 class="card-set-book-title ellipsis">${title}</h4>
+    <h3 class="card-set-book-title ellipsis">${title}</h3>
     <p class="card-set-author ellipsis">${author}</p></li></button>`;
     })
     .join('');
