@@ -30,12 +30,11 @@ function enableBodyScroll() {
 }
 
 function onBookClick(event) {
-  const bookElement = event.target.closest('.book-item');
+  const bookElement = event.target.closest('.card-set-item');
   if (!bookElement) return;
 
   const bookId = bookElement.getAttribute('data-id');
   if (bookId) {
-    console.log('Клік на книзі з ID:', bookId);
     loadBookDetails(bookId);
   }
 }
@@ -76,8 +75,6 @@ async function loadBookDetails(bookId) {
       modalNote.textContent = ''; // Пустий текст, якщо книга не додана до списку покупок
     }
   } catch (error) {
-    console.error('Помилка завантаження даних книги:', error);
-
     currentBookData = {};
   }
 }
@@ -130,14 +127,14 @@ function onClickBtnAdd() {
       modalNote.textContent = ''; // Пустий текст, якщо книга видалена зі списку покупок
     }
   } else {
-    console.error('Дані про книгу відсутні.');
+    const errorElement = document.querySelector('.error-message');
+    errorElement.textContent = 'Помилка: дані про книгу відсутні.';
   }
 }
 
 let isBookAddedToShoppingList = false;
 
 function openModal() {
-  console.log('Модальне вікно відкрито');
   backdrop.classList.remove('is-hidden');
   modal.classList.remove('is-hidden');
   disableBodyScroll();
@@ -235,7 +232,7 @@ function markupModal(bookData) {
               alt="Book shop"
               width="38"
               height="36"
-              class="modal-book-seller "
+              class="modal-book-seller"
             /></a>
           </li>
         </ul>
