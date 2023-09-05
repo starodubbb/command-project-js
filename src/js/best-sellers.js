@@ -9,8 +9,8 @@ export async function renderBestSellers() {
   // Отримуємо популярні книги для кожної категорії
 }
 
-async function renderBookcategories(category) {
-  const data = await fetchCategoryList(category);
+async function renderBookcategories() {
+  const data = await fetchCategoryList();
 
   const markupListBook = data
     .map(({ book_list, title, _id }) => {
