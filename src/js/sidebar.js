@@ -4,7 +4,7 @@ import { renderBestSellers } from './best-sellers';
 const sideBarEl = document.querySelector('.side-bar');
 const sideBarListEl = document.querySelector('.side-bar-list');
 const booksContainerEl = document.querySelector('.books-container');
-const cardSetEl = document.querySelector('.card-set');
+// const cardSetEl = document.querySelector('.card-set');
 const bestSellersTitleEl = document.querySelector('.best-sellers > h2');
 
 startRender();
@@ -33,21 +33,27 @@ function renderMarkupList(arrays) {
 
 function onRenderMarkup(e) {
   const currentCategory = e.target.textContent;
-  const categoriesListEl = document.querySelector('.categories-list');
+  // const categoriesListEl = document.querySelector('.categories-list');
   const currentEl = document.querySelector('.current-category');
   const titleEl = document.querySelector('.card-set-title');
+
+  const cardSetEl = document.createElement('ul');
+  cardSetEl.classList.add('card-set');
+  cardSetEl.classList.add('list');
 
   if (e.currentTarget === e.target) {
     return;
   }
 
   bestSellersTitleEl.innerHTML = '';
-  categoriesListEl.innerHTML = '';
+  // categoriesListEl.innerHTML = '';
+  booksContainerEl.innerHTML = '';
 
   const markupTitle = renderMarkupTitle(currentCategory);
   titleEl.innerHTML = markupTitle;
 
-  renderMarkupBook(currentCategory);
+  renderMarkupBook(currentCategory, cardSetEl);
+  booksContainerEl.append(cardSetEl);
 
   if (currentEl) {
     currentEl.classList.remove('current-category');
@@ -55,7 +61,7 @@ function onRenderMarkup(e) {
   e.target.classList.add('current-category');
 }
 
-async function renderMarkupBook(category) {
+async function renderMarkupBook(category, cardSetEl) {
   const data = await fetchParticularCategory(category);
 
   const markupBook = data
