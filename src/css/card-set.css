@@ -1,0 +1,88 @@
+/*! СПІЛЬНО З BEST-SELLERS */
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.card-set-item {
+  height: 535px;
+}
+
+@media only screen and (min-width: 768px) {
+  .card-set-item {
+    height: 366px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .card-set-item {
+    height: 306px;
+  }
+}
+
+.card-set-btn {
+  cursor: pointer;
+  display: block;
+  border: none;
+  background-color: inherit;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+
+  text-align: start;
+}
+
+.wrapper-img {
+  margin: 0 auto;
+  margin-bottom: 14px;
+  height: 485px;
+}
+
+@media only screen and (min-width: 768px) {
+  .wrapper-img {
+    width: 218px;
+    height: 316px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .wrapper-img {
+    width: 180px;
+    height: 256px;
+  }
+}
+
+.card-set-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 8px;
+}
+
+.card-set-title {
+  margin-bottom: 40px;
+
+  line-height: 118.75%;
+  letter-spacing: -1.28px;
+}
+
+.card-set-book-title {
+  margin-bottom: 4px;
+
+  color: var(--light-theme-main-txt-cl);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 112.5%;
+  letter-spacing: -0.64px;
+  text-transform: uppercase;
+}
+
+.card-set-author {
+  color: var(--secondary-txt-cl);
+  font-size: 12px;
+  font-style: italic;
+  line-height: 116.667%;
+  letter-spacing: -0.48px;
+}
