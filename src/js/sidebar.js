@@ -11,12 +11,16 @@ startRender();
 sideBarListEl.addEventListener('click', onRenderMarkup);
 
 async function startRender() {
-  const data = await fetchCategoryList();
+  try {
+    const data = await fetchCategoryList();
 
-  const markupTitle = `<li><button class="side-bar-btn current-category" type="button" data-all_categories>All categories</button></li>`;
-  sideBarListEl.insertAdjacentHTML('afterbegin', markupTitle);
+    const markupTitle = `<li><button class="side-bar-btn current-category" type="button" data-all_categories>All categories</button></li>`;
+    sideBarListEl.insertAdjacentHTML('afterbegin', markupTitle);
 
-  renderMarkupList(data);
+    renderMarkupList(data);
+  } catch (err) {
+    alert('Something went wrong! Try reload the page!');
+  }
 }
 
 function renderMarkupList(arrays) {
@@ -67,18 +71,22 @@ function onRenderMarkup(e) {
 }
 
 async function renderMarkupBook(category, cardSetEl) {
-  const data = await fetchParticularCategory(category);
+  try {
+    const data = await fetchParticularCategory(category);
 
-  const markupBook = data
-    .map(({ book_image, title, author, _id }) => {
-      return `<li class="card-set-item" data-id="${_id}">
+    const markupBook = data
+      .map(({ book_image, title, author, _id }) => {
+        return `<li class="card-set-item" data-id="${_id}">
 	 <button class="card-set-btn" type="button"><div class="wrapper-img"><img class="card-set-img" src="${book_image}" alt=""></div>
 	  <h4 class="card-set-book-title ellipsis">${title}</h4>
 	  <p class="card-set-author ellipsis">${author}</p></button></li>`;
-    })
-    .join('');
+      })
+      .join('');
 
-  return (cardSetEl.innerHTML = markupBook);
+    cardSetEl.innerHTML = markupBook;
+  } catch (err) {
+    renderNoBooksError(cardSetEl);
+  }
 }
 
 function createMarkupTitle(category) {
@@ -87,4 +95,11 @@ function createMarkupTitle(category) {
   const notCompleteArr = arrayWords.slice(0, numberWord).join(' ');
 
   return `${notCompleteArr} <span class="title-accent">${arrayWords[numberWord]}</span>`;
+}
+
+function renderNoBooksError(container) {
+  const noBooksMessageElement = document.createElement('p');
+  noBooksMessageElement.classList.add('error-notification');
+  noBooksMessageElement.textContent = 'No books found';
+  container.appendChild(noBooksMessageElement);
 }

@@ -35,7 +35,6 @@
   --categories-accent-cl: #4f2ee8;
 
   --btn-cl: #4f2ee8;
-  --see-more-btn-cl: #ffffff;
 
   --scrollbar-thunb-cl: #e0e0e0;
 
@@ -59,7 +58,6 @@
   --modal-bg-cl: #202024;
   --modal-border-cl: #fff;
   --scrollbar-thunb-cl: rgba(17, 17, 17, 0.6);
-  --see-more-btn-cl: #202024;
 }
 
 @media only screen and (min-width: 320px) {

@@ -6,21 +6,25 @@ const bestSellersTitleEl = document.querySelector('.best-sellers > h2');
 renderBestSellers();
 
 export async function renderBestSellers() {
-  const categoriesResp = await fetchCategoryList();
+  try {
+    const categoriesResp = await fetchCategoryList();
 
-  bestSellersTitleEl.innerHTML = createMarkupTitle();
-  booksContainerEl.innerHTML = '';
+    bestSellersTitleEl.innerHTML = createMarkupTitle();
+    booksContainerEl.innerHTML = '';
 
-  //Create categories list element
-  const categoriesListEl = document.createElement('ul');
-  categoriesListEl.classList.add('categories-list');
-  categoriesListEl.classList.add('list');
+    //Create categories list element
+    const categoriesListEl = document.createElement('ul');
+    categoriesListEl.classList.add('categories-list');
+    categoriesListEl.classList.add('list');
 
-  //Render all categories and all top books
-  categoriesResp.forEach(categoryResp => {
-    renderFullCategory(categoryResp.list_name, categoriesListEl);
-  });
-  booksContainerEl.append(categoriesListEl);
+    //Render all categories and all top books
+    categoriesResp.forEach(categoryResp => {
+      renderFullCategory(categoryResp.list_name, categoriesListEl);
+    });
+    booksContainerEl.append(categoriesListEl);
+  } catch (err) {
+    alert('Something went wrong! Try reload the page!');
+  }
 }
 
 async function renderFullCategory(categoryName, categoriesListEl) {
@@ -32,29 +36,35 @@ async function renderFullCategory(categoryName, categoriesListEl) {
   renderCategoryTitleElement(categoryName, categoryElement);
 
   // Get popular books for each category
-  const booksByCategory = await fetchParticularCategory(categoryName);
-  if (booksByCategory.length > 0) {
-    const cardSetEl = document.createElement('ul');
-    cardSetEl.classList.add('card-set');
-    cardSetEl.classList.add('list');
+  try {
+    const booksByCategory = await fetchParticularCategory(categoryName);
+    if (booksByCategory.length > 0) {
+      const cardSetEl = document.createElement('ul');
+      cardSetEl.classList.add('card-set');
+      cardSetEl.classList.add('list');
 
-    //Render top books
-    const topBooksByCategory = booksByCategory.slice(0, 5);
-    topBooksByCategory.forEach(book => {
-      renderBookItemElement(book, cardSetEl);
-    });
-    categoryElement.appendChild(cardSetEl);
+      //Render top books
+      const topBooksByCategory = booksByCategory.slice(0, 5);
+      topBooksByCategory.forEach(book => {
+        renderBookItemElement(book, cardSetEl);
+      });
+      categoryElement.appendChild(cardSetEl);
 
-    if (booksByCategory.length > 5) {
-      const seeMoreButtonElement = renderSeeMoreBtn(categoryElement);
-      const otherBooks = booksByCategory.slice(5);
-      seeMoreButtonElement.addEventListener(
-        'click',
-        onShowMoreBooks.bind(null, otherBooks, cardSetEl)
-      );
+      if (booksByCategory.length > 5) {
+        const seeMoreButtonElement = renderSeeMoreBtn(categoryElement);
+        const otherBooks = booksByCategory.slice(5);
+        seeMoreButtonElement.addEventListener(
+          'click',
+          onShowMoreBooks.bind(null, otherBooks, cardSetEl)
+        );
+      }
+    } else {
+      throw new Error();
     }
-  } else {
+  } catch (err) {
+    renderNoBooksError(categoryElement);
   }
+
   categoriesListEl.appendChild(categoryElement);
 }
 
@@ -100,4 +110,11 @@ function renderBookItemElement({ book_image, title, author, _id }, bookSetEl) {
 
 function createMarkupTitle() {
   return 'Best Sellers <span class="title-accent">Books</span>';
+}
+
+function renderNoBooksError(container) {
+  const noBooksMessageElement = document.createElement('p');
+  noBooksMessageElement.classList.add('error-notification');
+  noBooksMessageElement.textContent = 'No books found';
+  container.appendChild(noBooksMessageElement);
 }

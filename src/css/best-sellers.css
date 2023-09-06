@@ -16,6 +16,9 @@
 .category-title {
   margin-bottom: 18px;
 
+  font-size: 14px;
+
+  font-weight: 400;
   color: var(--secondary-txt-cl);
   font-family: DM Sans;
   line-height: 1.29;
@@ -32,7 +35,7 @@
   color: var(--light-theme-main-txt-cl);
   border-radius: 40px;
   border: 2px solid #4f2ee8;
-  background-color: var(--see-more-btn-cl);
+  background-color: var(--light-bg-cl);
 
   min-width: 46px;
   padding-top: 14px;
@@ -75,4 +78,13 @@
   .category.show-top .card-set-item:nth-last-child(-n + 2) {
     display: none;
   }
+}
+
+.error-notification {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.17;
+  letter-spacing: -0.96px;
+  color: var(--light-theme-main-txt-cl);
+  text-align: center;
 }
