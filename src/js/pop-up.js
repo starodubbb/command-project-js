@@ -179,6 +179,7 @@ function closeModal() {
 
 function markupModal(bookData) {
   const { book_image, list_name, author, description, buy_links } = bookData;
+  const descriptionText = description || 'Description will be added soon ..';
   return `<div class="modal-content">
       <img class="modal-book-img"
               src="${book_image}"
@@ -188,7 +189,7 @@ function markupModal(bookData) {
               <h2 class="modal-book-title">${list_name}</h2>
               <h3 class="modal-book-author">${author}</h3>
 
-          <p class="modal-book-review">${description}</p>
+          <p class="modal-book-review">${descriptionText}</p>
         <ul class="modal-book-list list">
           <li class="modal-book-el">
             <a
