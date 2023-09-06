@@ -5,7 +5,19 @@
   line-height: 112.5%;
 
   overflow-y: scroll;
+
 }
+	
+	.side-bar::-webkit-scrollbar {
+		width: 8px;
+	 }
+	  
+	 .side-bar::-webkit-scrollbar-thumb {
+		background-color: #E0E0E0;
+		border-radius: 12px;
+	 }
+	 
+	 
 
 @media only screen and (max-width: 767px) {
   .side-bar {
@@ -26,6 +38,7 @@
     width: 356px;
   }
 }
+
 
 @media only screen and (min-width: 768px) {
   .side-bar-title {
