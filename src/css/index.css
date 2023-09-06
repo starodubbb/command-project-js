@@ -79,9 +79,9 @@
   border-radius: 12px;
 }
 
-@supports (scrollbar-color: var(--scrollbar-thunb-cl) var(--light-bg-cl)) {
+/* @supports (scrollbar-color: var(--scrollbar-thunb-cl) var(--light-bg-cl)) {
   * {
     scrollbar-color: var(--scrollbar-thunb-cl) var(--light-bg-cl);
     stroke-width: 8px;
   }
-}
+} */
