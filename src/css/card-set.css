@@ -38,6 +38,7 @@
 }
 
 .wrapper-img {
+  display: block;
   margin: 0 auto;
   margin-bottom: 14px;
   height: 485px;

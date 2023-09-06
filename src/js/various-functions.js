@@ -1,8 +1,8 @@
 export function setActivePage(page) {
-  const previousActivePage = document.querySelector('[data-page].current');
-  if (previousActivePage) {
-    previousActivePage.classList.remove('current');
-  }
-  const activePage = document.querySelector(`[data-page=${page}]`);
-  activePage.classList.add('current');
+  const previousActivePageArr = document.querySelectorAll(
+    '[data-page].current'
+  );
+  previousActivePageArr.forEach(page => page.classList.remove('current'));
+  const activePageArr = document.querySelectorAll(`[data-page=${page}]`);
+  activePageArr.forEach(page => page.classList.add('current'));
 }
