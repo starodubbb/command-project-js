@@ -1,4 +1,5 @@
 import { fetchCategoryList, fetchParticularCategory } from './service-api';
+import Notiflix from 'notiflix';
 
 const booksContainerEl = document.querySelector('.books-container');
 const bestSellersTitleEl = document.querySelector('.best-sellers > h2');
@@ -23,7 +24,7 @@ export async function renderBestSellers() {
     });
     booksContainerEl.append(categoriesListEl);
   } catch (err) {
-    alert('Something went wrong! Try reload the page!');
+    Notiflix.Notify.failure('Something went wrong! Try reload the page!');
   }
 }
 
@@ -98,9 +99,9 @@ function renderBookItemElement({ book_image, title, author, _id }, bookSetEl) {
   const markupBook = `
   <li class="card-set-item" data-id="${_id}">
 	  <button class="card-set-btn" type="button">
-      <div class="wrapper-img">
-        <img class="card-set-img" src="${book_image}" alt="">
-      </div>
+      <span class="wrapper-img">
+        <img class="card-set-img" src="${book_image}" alt="book" loading="lazy">
+      </span>
       <h4 class="card-set-book-title ellipsis">${title}</h4>
       <p class="card-set-author ellipsis">${author}</p>
     </button>
