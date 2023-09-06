@@ -45,10 +45,8 @@ function onRenderMarkup(e) {
   bestSellersTitleEl.innerHTML = '';
   categoriesListEl.innerHTML = '';
 
-  
   titleEl.innerHTML = renderMarkupTitle(currentCategory);
 
-  renderMarkupTitle(currentCategory);
   renderMarkupBook(currentCategory);
 
   if (currentEl) {
@@ -73,9 +71,9 @@ async function renderMarkupBook(category) {
 }
 
 function renderMarkupTitle(category) {
-  const arrayWords = category.split(" ");
+  const arrayWords = category.split(' ');
   const numberWord = arrayWords.length - 1;
-  const notCompleteArr = arrayWords.slice(0, numberWord).join(" ");
+  const notCompleteArr = arrayWords.slice(0, numberWord).join(' ');
 
-return `${notCompleteArr} <span class="title-accent">${arrayWords[numberWord]}</span>`
+  return `${notCompleteArr} <span class="title-accent">${arrayWords[numberWord]}</span>`;
 }
