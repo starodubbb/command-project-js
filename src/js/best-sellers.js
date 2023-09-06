@@ -1,150 +1,103 @@
-// <!-- <ul class="list categories-list">
-//       <li class="category">
-//         <h3 class="category-item"></h3>
-//         <ul class="card-set list">
-//           <li class="card-set-item"></li>
-//           <li class="card-set-item"></li>
-//           <li class="card-set-item"></li>
-//         </ul>
-//       </li>
-//       <li class="category">
-//         <h3 class="category-item"></h3>
-//         <ul class="card-set list">
-//           <li class="card-set-item"></li>
-//           <li class="card-set-item"></li>
-//           <li class="card-set-item"></li>
-//         </ul>
-//       </li>
-//     </ul>
-
 import { fetchCategoryList, fetchParticularCategory } from './service-api';
 
-const categoryContainer = document.querySelector('.books-container');
+const booksContainerEl = document.querySelector('.books-container');
+const bestSellersTitleEl = document.querySelector('.best-sellers > h2');
 
 renderBestSellers();
 
 export async function renderBestSellers() {
-  const categories = await fetchCategoryList();
-  renderMarkupBooks(categories);
+  const categoriesResp = await fetchCategoryList();
 
-  categories.forEach(async category => {
-    renderMarkupBooksByCategory(category);
+  bestSellersTitleEl.innerHTML = createMarkupTitle();
+  booksContainerEl.innerHTML = '';
+
+  //Create categories list element
+  const categoriesListEl = document.createElement('ul');
+  categoriesListEl.classList.add('categories-list');
+  categoriesListEl.classList.add('list');
+
+  //Render all categories and all top books
+  categoriesResp.forEach(categoryResp => {
+    renderFullCategory(categoryResp.list_name, categoriesListEl);
   });
+  booksContainerEl.append(categoriesListEl);
 }
 
-async function renderMarkupBooksByCategory() {
-  const data = await fetchCategoryList();
-  const markupListBook = data
-    .map(({ _list, li, title, _ul }) => {
-      return `
-      <ul class="list categories-list" data-id="${_list}">
-        <li class="category">${li}</li>
-        <h3 class="category-item">${title}</h3>
-        <ul class="card-set list">${_ul}</ul>
-       </ul>`;
-    })
-    .join('');
-  categoryContainer.innerHTML = markupListBook;
-}
+async function renderFullCategory(categoryName, categoriesListEl) {
+  //Create category element
+  const categoryElement = document.createElement('li');
+  categoryElement.classList.add('category');
+  categoryElement.classList.add('show-top');
 
-async function renderMarkupBooks(category, cardSetEl) {
-  const data = await fetchParticularCategory(category.list_name);
-  if (data.length > 0) {
-    const bookListElement = document.createElement('ul');
-    bookListElement.classList.add('card-set');
-    bookListElement.classList.add('list');
+  renderCategoryTitleElement(categoryName, categoryElement);
 
-    data.slice(0, 5).forEach(book => {
-      const bookItemElement = createBookItemElement(book);
-      bookListElement.appendChild(bookItemElement);
+  // Get popular books for each category
+  const booksByCategory = await fetchParticularCategory(categoryName);
+  if (booksByCategory.length > 0) {
+    const cardSetEl = document.createElement('ul');
+    cardSetEl.classList.add('card-set');
+    cardSetEl.classList.add('list');
+
+    //Render top books
+    const topBooksByCategory = booksByCategory.slice(0, 5);
+    topBooksByCategory.forEach(book => {
+      renderBookItemElement(book, cardSetEl);
     });
+    categoryElement.appendChild(cardSetEl);
 
-    categoryElement.appendChild(bookListElement);
-    const bookBestItemElements = document.querySelectorAll('.card-set-item');
-    bookBestItemElements.forEach(bookBestItem => {
-      bookBestItem.addEventListener('click', () => {});
-    });
-
-    if (data.length > 5) {
-      const seeMoreButtonElement = document.createElement('button');
-      seeMoreButtonElement.classList.add('btn');
-      seeMoreButtonElement.textContent = 'See More';
-      seeMoreButtonElement.classList.add('see-more-button');
-      categoryElement.appendChild(seeMoreButtonElement);
-
-      seeMoreButtonElement.addEventListener('click', () => {
-        const bookListElement = categoryElement.querySelector('.card-set');
-
-        data.slice(5).forEach(book => {
-          const bookItemElement = createBookItemElement(book);
-          bookListElement.appendChild(bookItemElement);
-        });
-
-        seeMoreButtonElement.remove(); // Видалити кнопку "See More" після додавання нових книг
-      });
+    if (booksByCategory.length > 5) {
+      const seeMoreButtonElement = renderSeeMoreBtn(categoryElement);
+      const otherBooks = booksByCategory.slice(5);
+      seeMoreButtonElement.addEventListener(
+        'click',
+        onShowMoreBooks.bind(null, otherBooks, cardSetEl)
+      );
     }
   } else {
-    const noBooksMessageElement = document.createElement('p');
-    noBooksMessageElement.textContent =
-      'Немає популярних книг для цієї категорії';
-    categoryElement.appendChild(noBooksMessageElement);
   }
-  categoriesList.appendChild(categoryElement);
-  categoryContainer.appendChild(categoriesList);
-
-  const markupBook = data
-    .map(({ book_image, title, author, _id }) => {
-      return `<li class="card-set-item" data-id="${_id}">
-   <button class="card-set-btn" type="button"><div class="wrapper-img"><img class="card-set-img" src="${book_image}" alt=""></div>
-    <h3 class="card-set-book-title ellipsis">${title}</h3>
-    <p class="card-set-author ellipsis">${author}</p></li></button>`;
-    })
-    .join('');
-
-  return (cardSetEl.innerHTML = markupBook);
+  categoriesListEl.appendChild(categoryElement);
 }
-// const books = await fetchParticularCategory(category.list_name);
 
-// function createBookItemElement(book) {
-//   const bookItemElement = document.createElement('li');
-//   bookItemElement.classList.add('card-set-item');
-//   bookItemElement.classList.add('book-item');
-//   bookItemElement.classList.add('link');
-//   bookItemElement.dataset.id = `${book._id}`;
+function onShowMoreBooks(books, bookSetEl, event) {
+  const curCategoryEl = event.target.closest('.category');
+  curCategoryEl.classList.remove('show-top');
 
-//   const bookImageElement = document.createElement('img');
-//   bookImageElement.src = book.book_image;
-//   bookImageElement.alt = book.title;
-//   bookImageElement.classList.add('book-image');
-//   bookItemElement.appendChild(bookImageElement);
+  books.forEach(book => {
+    renderBookItemElement(book, bookSetEl);
+  });
+  event.currentTarget.remove();
+}
 
-//   const bookTitleElement = document.createElement('h4');
-//   bookTitleElement.textContent = book.title;
-//   bookTitleElement.classList.add('book-title');
-//   bookTitleElement.classList.add('ellipsis');
-//   bookItemElement.appendChild(bookTitleElement);
+function renderSeeMoreBtn(categoryContainer) {
+  const seeMoreButtonElement = document.createElement('button');
+  seeMoreButtonElement.classList.add('btn');
+  seeMoreButtonElement.classList.add('see-more-button');
+  seeMoreButtonElement.textContent = 'See More';
+  categoryContainer.appendChild(seeMoreButtonElement);
+  return seeMoreButtonElement;
+}
 
-//   const bookAuthorElement = document.createElement('p');
-//   bookAuthorElement.textContent = book.author;
-//   bookAuthorElement.classList.add('book-author');
-//   bookAuthorElement.classList.add('ellipsis');
-//   bookItemElement.appendChild(bookAuthorElement);
+function renderCategoryTitleElement(categoryName, categoryContainer) {
+  const categoryTitleElement = document.createElement('h3');
+  categoryTitleElement.textContent = categoryName;
+  categoryTitleElement.classList.add('category-title');
+  categoryContainer.appendChild(categoryTitleElement);
+}
 
-//   return bookItemElement;
-// }
+function renderBookItemElement({ book_image, title, author, _id }, bookSetEl) {
+  const markupBook = `
+  <li class="card-set-item" data-id="${_id}">
+	  <button class="card-set-btn" type="button">
+      <div class="wrapper-img">
+        <img class="card-set-img" src="${book_image}" alt="">
+      </div>
+      <h4 class="card-set-book-title ellipsis">${title}</h4>
+      <p class="card-set-author ellipsis">${author}</p>
+    </button>
+  </li>`;
+  bookSetEl.insertAdjacentHTML('beforeend', markupBook);
+}
 
-// Отримуємо доступ до категорій книг за допомогою API
-// console.log(categories);
-
-// const categoriesList = document.createElement('ul');
-// categoriesList.classList.add('list');
-// categoriesList.classList.add('categories-list');
-
-// categories.forEach(async category => {
-//   const categoryElement = document.createElement('li');
-//   categoryElement.classList.add('category');
-
-//   const categoryTitleElement = document.createElement('h3');
-//   categoryTitleElement.textContent = category.list_name;
-//   categoryTitleElement.classList.add('category-item');
-//   categoryElement.appendChild(categoryTitleElement);
+function createMarkupTitle() {
+  return 'Best Sellers <span class="title-accent">Books</span>';
+}
