@@ -4,9 +4,10 @@ const bodyRef = document.querySelector('body');
 const anchorRef = document.querySelectorAll('.mobile-menu-nav-li');
 
 btnMenu.addEventListener('click', doit);
-for (let i = 0; i < anchorRef.length; i++) {
-  anchorRef[i].addEventListener('click', doit);
-}
+
+// for (let i = 0; i < anchorRef.length; i++) {
+//   anchorRef[i].addEventListener('click', doit);
+// }
 
 window
   .matchMedia('(min-width: 768px)')

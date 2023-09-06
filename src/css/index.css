@@ -82,6 +82,6 @@
 @supports (scrollbar-color: var(--scrollbar-thunb-cl) var(--light-bg-cl)) {
   * {
     scrollbar-color: var(--scrollbar-thunb-cl) var(--light-bg-cl);
-    stroke-width: 8px;
+    /* stroke-width: 8px; */
   }
 }

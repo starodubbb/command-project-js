@@ -1,28 +1,38 @@
 <div class="mobile-menu" id="mobile-menu" data-menu>
   <div class="user-info">
-    <img
-      src="img/header/stephen.png"
-      srcset="img/header/stephen@2x.png 2x"
-      alt=""
-      class="user-info-img"
-      width="37"
-      height="37"
-    />
+    <img src="./img/header/user.svg" alt="" width="37" height="37" />
     <span class="user-info-login">Hello</span>
   </div>
 
   <ul class="mobile-menu-nav">
     <li class="mobile-menu-nav-li">
-      <a href="index.html" class="mobile-menu-nav-btn nav-list-btn">Home</a>
+      <!-- <a
+        href="index.html"
+        class="mobile-menu-nav-btn nav-list-btn"
+        data-page="home"
+        >Home</a
+      > -->
+      <a
+        href="index.html"
+        class="nav-list-btn mobile-menu-nav-btn link"
+        data-page="home"
+        >Home</a
+      >
     </li>
     <li class="mobile-menu-nav-li">
-      <a
+      <!-- <a
         href="shopping-list-page.html"
         class="btn-link btn-link-shopping-list mobile-menu-nav-btn nav-list-btn"
+        data-page="shopping-list"
+      > -->
+      <a
+        href="shopping-list-page.html"
+        class="nav-list-btn mobile-menu-nav-btn link"
+        data-page="shopping-list"
       >
         Shopping list
-        <svg class="icon icon-bag">
-          <use href="./img/icons/symbol-defs.svg#icon-bag"></use>
+        <svg class="shopping-list-svg" width="20" height="20">
+          <use href="./img/header/logo-light.svg#icon-cart-fill"></use>
         </svg>
       </a>
     </li>

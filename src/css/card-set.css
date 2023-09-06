@@ -1,4 +1,7 @@
 /*! СПІЛЬНО З BEST-SELLERS */
+.title-accent {
+  color: var(--light-theme-accent-cl);
+}
 
 .ellipsis {
   white-space: nowrap;
@@ -35,6 +38,7 @@
 }
 
 .wrapper-img {
+  display: block;
   margin: 0 auto;
   margin-bottom: 14px;
   height: 485px;

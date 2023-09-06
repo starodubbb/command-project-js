@@ -1,7 +1,7 @@
 <header class="header">
   <div class="container">
     <nav class="header-nav">
-      <a href="./index.html" class="header-link link">
+      <a href="./index.html" class="header-link link" aria-label="logo">
         <svg class="header-logo">
           <use href="./img/header/logo-light.svg#icon-logo"></use>
         </svg>
@@ -30,14 +30,16 @@
     </nav>
     <div class="header-theme-switcher">
       <label class="switcher header-switcher">
-        <input class="switcher-input" id="theme-switcher" type="checkbox" />
+        <input
+          class="switcher-input"
+          id="theme-switcher"
+          type="checkbox"
+          aria-label="white-black themes switcher"
+        />
         <span class="switcher-slider"></span>
       </label>
 
       <button type="button" class="header-menu-login">
-        <!-- <svg class="user-login" width="32" height="32">
-          <use href="./img/header/logo-light.svg#icon-user-fill"></use>   
-        </svg> -->
         <img src="./img/header/user.svg" alt="" width="37" height="37" />
         <span class="user-text">Hello</span>
       </button>
@@ -49,7 +51,12 @@
         aria-controls="mobile-menu"
         data-menu-button
       >
-        <svg class="icon-burger" width="28" height="28">
+        <svg
+          class="icon-burger"
+          width="28"
+          height="28"
+          aria-label="open or close menu"
+        >
           <use
             class="icon-burger-open"
             href="./img/icons/symbol-defs.svg#icon-burger-menu"
