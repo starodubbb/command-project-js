@@ -1,4 +1,7 @@
 /*! СПІЛЬНО З BEST-SELLERS */
+.title-accent {
+  color: var(--light-theme-accent-cl);
+}
 
 .ellipsis {
   white-space: nowrap;

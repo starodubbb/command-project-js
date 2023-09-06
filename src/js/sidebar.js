@@ -77,5 +77,9 @@ async function renderMarkupBook(category, cardSetEl) {
 }
 
 function renderMarkupTitle(category) {
-  return category;
+  const arrayWords = category.split(' ');
+  const numberWord = arrayWords.length - 1;
+  const notCompleteArr = arrayWords.slice(0, numberWord).join(' ');
+
+  return `${notCompleteArr} <span class="title-accent">${arrayWords[numberWord]}</span>`;
 }
