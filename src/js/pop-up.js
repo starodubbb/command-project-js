@@ -30,12 +30,11 @@ function enableBodyScroll() {
 }
 
 function onBookClick(event) {
-  const bookElement = event.target.closest('.book-item');
+  const bookElement = event.target.closest('.card-set-item');
   if (!bookElement) return;
 
   const bookId = bookElement.getAttribute('data-id');
   if (bookId) {
-    console.log('Клік на книзі з ID:', bookId);
     loadBookDetails(bookId);
   }
 }
@@ -76,8 +75,6 @@ async function loadBookDetails(bookId) {
       modalNote.textContent = ''; // Пустий текст, якщо книга не додана до списку покупок
     }
   } catch (error) {
-    console.error('Помилка завантаження даних книги:', error);
-
     currentBookData = {};
   }
 }
@@ -130,14 +127,14 @@ function onClickBtnAdd() {
       modalNote.textContent = ''; // Пустий текст, якщо книга видалена зі списку покупок
     }
   } else {
-    console.error('Дані про книгу відсутні.');
+    const errorElement = document.querySelector('.error-message');
+    errorElement.textContent = 'Помилка: дані про книгу відсутні.';
   }
 }
 
 let isBookAddedToShoppingList = false;
 
 function openModal() {
-  console.log('Модальне вікно відкрито');
   backdrop.classList.remove('is-hidden');
   modal.classList.remove('is-hidden');
   disableBodyScroll();
@@ -182,6 +179,7 @@ function closeModal() {
 
 function markupModal(bookData) {
   const { book_image, list_name, author, description, buy_links } = bookData;
+  const descriptionText = description || 'Description will be added soon ..';
   return `<div class="modal-content">
       <img class="modal-book-img"
               src="${book_image}"
@@ -191,7 +189,7 @@ function markupModal(bookData) {
               <h2 class="modal-book-title">${list_name}</h2>
               <h3 class="modal-book-author">${author}</h3>
 
-          <p class="modal-book-review">${description}</p>
+          <p class="modal-book-review">${descriptionText}</p>
         <ul class="modal-book-list list">
           <li class="modal-book-el">
             <a
@@ -235,7 +233,7 @@ function markupModal(bookData) {
               alt="Book shop"
               width="38"
               height="36"
-              class="modal-book-seller "
+              class="modal-book-seller"
             /></a>
           </li>
         </ul>

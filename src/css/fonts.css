@@ -19,7 +19,7 @@
 /* italic */
 @font-face {
   font-family: 'DM Sans';
-  font-style: normal;
+  font-style: italic;
   font-weight: 400;
   font-display: swap;
   src: url(../fonts/DMSans-Italic.ttf) format('truetype');
