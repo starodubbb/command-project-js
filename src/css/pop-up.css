@@ -251,3 +251,6 @@
     letter-spacing: -0.48px;
   }
 }
+.dark .modal-note {
+  color: rgba(255, 255, 255, 0.5);
+}

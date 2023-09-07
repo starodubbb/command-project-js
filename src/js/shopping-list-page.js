@@ -6,7 +6,22 @@ import './service-api.js';
 import './service-pagination-api.js';
 
 import Pagination from 'tui-pagination';
+// import 'tui-pagination/dist/tui-pagination.css';
 import { setActivePage } from './various-functions.js';
+
+import amazon_mob_1x from '../img/shop-list/amazon-shop_mob@1x.png';
+import amazon_mob_2x from '../img/shop-list/amazon-shop_mob@2x.png';
+import amazon_tab_1x from '../img/shop-list/amazon-shop_tab@1x.png';
+import amazon_tab_2x from '../img/shop-list/amazon-shop_tab@2x.png';
+import apple_mob_1x from '../img/shop-list/apple-shop_mob@1x.png';
+import apple_mob_2x from '../img/shop-list/apple-shop_mob@2x.png';
+import apple_tab_1x from '../img/shop-list/apple-shop_tab@1x.png';
+import apple_tab_2x from '../img/shop-list/apple-shop_tab@2x.png';
+import bookshelf_mob_1x from '../img/shop-list/bookshelf-shop_mob@1x.png';
+import bookshelf_mob_2x from '../img/shop-list/bookshelf-shop_mob@2x.png';
+import bookshelf_tab_1x from '../img/shop-list/bookshelf-shop_tab@1x.png';
+import bookshelf_tab_2x from '../img/shop-list/bookshelf-shop_tab@2x.png';
+import iconsSprite from '../img/icons/symbol-defs.svg';
 
 const PAGE = 'shopping-list';
 setActivePage(PAGE);
@@ -34,8 +49,10 @@ createShoppingList();
 function createShoppingList() {
   const storageData = JSON.parse(localStorage.getItem(LS_KEY));
   if (!storageData || storageData.length === 0) {
+    showEmptyList();
     createEmptyCart();
   } else {
+    showShoppingList();
     const totalItems = storageData.length;
     initPagination(totalItems);
     createFullCart(storageData, currentPage);
@@ -57,58 +74,60 @@ function createFullCart(dataUser, page) {
   const itemsOnPage = dataUser.slice(startIndex, endIndex);
   // console.log(itemsOnPage);
   const markup = itemsOnPage.reduce((acc, book) => {
+    const descriptionText =
+      book.description || 'Description will be added soon ..';
     return (
       acc +
-      ` <li class="item-card" id="${book._id}">
+      ` <li class="item-card" data-id="${book._id}">
         <article class="shopping-card" id="shoppingCard">
             <img class="card-book-images" src="${book.book_image}"
                 alt="${book.title}" width="100" heigth="142">
             <div class="card-info">
-                <h2 class="card-book-title">${book.title}</h2>
-                <p class="card-book-categories">${book.list_name}</p>
-                <p class="card-book-desc">
-                    ${book.description}
+                <h2 class="card-book-title ellipsis">${book.title}</h2>
+                <p class="card-book-categories ellipsis">${book.list_name}</p>
+                <p class="card-book-desc ellipsis">
+                    ${descriptionText}
                 </p>
                 <div class="card-footer">
-                    <h3 class="card-book-author">${book.author}</h3>
+                    <h3 class="card-book-author ellipsis">${book.author}</h3>
                     <ul class="list card-book-shops">
                         <li>
-                            <a href="${book.buy_links[0].url}" target="_blank" rel="noopener noreferren">
+                            <a class="shop-link" href="${book.buy_links[0].url}" target="_blank" rel="noopener noreferren">
                                 <picture>
                                     <source media="(max-width: 767px)"
-                                        srcset="./img/shop-list/amazon-shop_mob@1x.png 1x, ./img/shop-list/amazon-shop_mob@2x.png 2x"
+                                        srcset="${amazon_mob_1x} 1x, ${amazon_mob_2x} 2x"
                                         type="image/png" />
                                     <source media="(min-width: 768px)"
-                                        srcset="./img/shop-list/amazon-shop_tab@1x.png 1x, ./img/shop-list/amazon-shop_tab@2x.png 2x"
+                                        srcset="${amazon_tab_1x} 1x, ${amazon_tab_2x} 2x"
                                         type="image/png" />
-                                    <img src="./img/shop-list/amazon-shop_mob@1x.png" alt="Amazon shop"
+                                    <img class="shop-icon amazon" src="${amazon_tab_1x}" alt="Amazon shop"
                                         loading="lazy" />
                                 </picture>
                             </a>
                         </li>
                         <li>
-                            <a href="${book.buy_links[1].url}" target="_blank" rel="noopener noreferren">
+                            <a class="shop-link" href="${book.buy_links[1].url}" target="_blank" rel="noopener noreferren">
                                 <picture>
-                                    <source media="(min-width: 320px)"
-                                        srcset="./img/shop-list/apple-shop_mob@1x.png 1x, ./img/shop-list/apple-shop_mob@2x.png 2x"
+                                    <source media="(max-width: 767px)"
+                                        srcset="${apple_mob_1x} 1x, ${apple_mob_2x} 2x"
                                         type="image/png" />
                                     <source media="(min-width: 768px)"
-                                        srcset="./img/shop-list/apple-shop_tab@1x.png 1x, ./img/shop-list/apple-shop_tab@2x.png 2x"
+                                        srcset="${apple_tab_1x} 1x, ${apple_tab_2x} 2x"
                                         type="image/png" />
-                                    <img src="./img/shop-list/apple-shop_mob@1x.png" alt="Apple shop" loading="lazy" />
+                                    <img class="shop-icon" src="${apple_tab_1x}" alt="Apple shop" loading="lazy" />
                                 </picture>
                             </a>
                         </li>
                         <li>
-                            <a href="${book.buy_links[4].url}" target="_blank" rel="noopener noreferren">
+                            <a class="shop-link" href="${book.buy_links[4].url}" target="_blank" rel="noopener noreferren">
                                 <picture>
-                                    <source media="(min-width: 320px)"
-                                        srcset="./img/shop-list/bookshelf-shop_mob@1x.png 1x, ./img/shop-list/bookshelf-shop_mob@2x.png 2x"
+                                    <source media="(max-width: 767px)"
+                                        srcset="${bookshelf_mob_1x} 1x, ${bookshelf_mob_2x} 2x"
                                         type="image/png" />
                                     <source media="(min-width: 768px)"
-                                        srcset="./img/shop-list/bookshelf-shop_tab@1x.png 1x, ./img/shop-list/bookshelf-shop_tab@2x.png 2x"
+                                        srcset="${bookshelf_tab_1x} 1x, ${bookshelf_tab_2x} 2x"
                                         type="image/png" />
-                                    <img src="./img/shop-list/bookshelf-shop_mob@1x.png" alt="Bookshelf shop"
+                                    <img class="shop-icon" src="${bookshelf_tab_1x}" alt="Bookshelf shop"
                                         loading="lazy" />
                                 </picture>
                             </a>
@@ -117,15 +136,16 @@ function createFullCart(dataUser, page) {
                 </div>
             </div>
 
-            <button id="removedCard" aria-label="remove card" class="remove-card" type="button">
-                <svg class="icon-removed" width="22" height="22">
-                    <use href="./img/icons/removed-card.svg#icon-remove-card"></use>
+            <button id="removedCard" aria-label="remove card" class="btn remove-card" type="button">
+                <svg class="icon-removed" width="18" height="18">
+                    <use class="icon-removed-use" href="${iconsSprite}#icon-trash"></use>
                 </svg>
             </button>
         </article>
     </li>`
     );
   }, '');
+  refs.shoppingBox.innerHTML = markup;
 }
 
 function initPagination(totalItems) {
@@ -135,8 +155,121 @@ function initPagination(totalItems) {
     visiblePages: visiblePages,
     centerAlign: true,
     page: currentPage,
+    template: {
+      page: '<a href="#" class="btn link pag-page-link pag-btn">{{page}}</a>',
+      currentPage:
+        '<strong class="btn pag-btn pad-btn-active">{{page}}</strong>',
+      moveButton: type => {
+        let template = '';
+        if (type.type === 'first') {
+          template =
+            '<a href="#" class="btn pag-btn pag-back-btn">' +
+            '<svg class="" width="31" height="24">' +
+            '<use class="" href="' +
+            iconsSprite +
+            '#icon-double-arrow-left"></use>' +
+            '</svg>' +
+            '</a>';
+        }
+        if (type.type === 'prev') {
+          template =
+            '<a href="#" class="btn pag-btn pag-back-btn pag-prev-single-arrow">' +
+            '<svg class="" width="24" height="24">' +
+            '<use class="" href="' +
+            iconsSprite +
+            '#icon-single-arrow-left"></use>' +
+            '</svg>' +
+            '</a>';
+        }
+        if (type.type === 'next') {
+          template =
+            '<a href="#" class="btn pag-btn pag-next-btn pag-next-single-arrow">' +
+            '<svg class="" width="24" height="24">' +
+            '<use class="" href="' +
+            iconsSprite +
+            '#icon-single-arrow-right "></use>' +
+            '</svg>' +
+            '</a>';
+        }
+        if (type.type === 'last') {
+          template =
+            '<a href="#" class="btn pag-btn pag-next-btn">' +
+            '<svg class="" width="31" height="24">' +
+            '<use class="" href="' +
+            iconsSprite +
+            '#icon-double-arrow-right"></use>' +
+            '</svg>' +
+            '</a>';
+        }
+        return template;
+      },
+
+      disabledMoveButton: type => {
+        let template = '';
+        if (type.type === 'first') {
+          template =
+            '<a href="#" class="btn pag-btn pag-back-btn">' +
+            '<svg class="" width="31" height="24">' +
+            '<use class="" href="' +
+            iconsSprite +
+            '#icon-double-arrow-left"></use>' +
+            '</svg>' +
+            '</a>';
+        }
+        if (type.type === 'prev') {
+          template =
+            '<a href="#" class="btn pag-btn pag-back-btn pag-prev-single-arrow">' +
+            '<svg class="" width="24" height="24">' +
+            '<use class="" href="' +
+            iconsSprite +
+            '#icon-single-arrow-left"></use>' +
+            '</svg>' +
+            '</a>';
+        }
+        if (type.type === 'next') {
+          template =
+            '<a href="#" class="btn pag-btn pag-next-btn pag-next-single-arrow">' +
+            '<svg class="" width="24" height="24">' +
+            '<use class="" href="' +
+            iconsSprite +
+            '#icon-single-arrow-right "></use>' +
+            '</svg>' +
+            '</a>';
+        }
+        if (type.type === 'last') {
+          template =
+            '<a href="#" class="btn pag-btn pag-next-btn">' +
+            '<svg class="" width="31" height="24">' +
+            '<use class="" href="' +
+            iconsSprite +
+            '#icon-double-arrow-right"></use>' +
+            '</svg>' +
+            '</a>';
+        }
+        return template;
+      },
+      moreButton:
+        '<a href="#" class="link btn pag-btn pag-page-link">' +
+        '<span class="pag-ellip-sym">...</span>' +
+        '</a>',
+    },
   });
 
+  // page: '<a href="#" class="tui-page-btn page">{{page}}</a>',
+  //     currentPage:
+  //       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+  //     moveButton:
+  //       '<a href="#" class="tui-page-btn tui-{{type}}">' +
+  //       '<span class="tui-ico-{{type}}">{{type}}</span>' +
+  //       '</a>',
+  //     disabledMoveButton:
+  //       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+  //       '<span class="tui-ico-{{type}}">{{type}}</span>' +
+  //       '</span>',
+  //     moreButton:
+  //       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+  //       '<span class="tui-ico-ellip">...</span>' +
+  //       '</a>',
   pagination.on('afterMove', eventData => {
     currentPage = eventData.page;
     const storageData = JSON.parse(localStorage.getItem(LS_KEY));
@@ -146,12 +279,16 @@ function initPagination(totalItems) {
 }
 
 function deleteCard(event) {
-  if (event.target.classList.contains('remove-card')) {
+  if (
+    event.target.classList.contains('remove-card') ||
+    event.target.classList.contains('icon-removed') ||
+    event.target.classList.contains('icon-removed-use')
+  ) {
     const card = event.target.closest('.item-card');
-    const bookId = card.dataset.bookId;
-    const storageData = JSON.parse(localStorage.getItem(LS_KEY));
-    const newStorageData = storageData.filter(object => object.id !== bookId);
+    const bookId = card.dataset.id;
 
+    const storageData = JSON.parse(localStorage.getItem(LS_KEY));
+    const newStorageData = storageData.filter(object => object._id !== bookId);
     localStorage.setItem(LS_KEY, JSON.stringify(newStorageData));
     if (!newStorageData.length) {
       card.remove();
@@ -204,4 +341,15 @@ function firstPageLoaded() {
     visiblePages = 3;
     createShoppingList();
   }
+}
+
+function showEmptyList() {
+  refs.emptyBox.classList.remove('hide');
+  refs.shoppingBox.classList.add('hide');
+  refs.pagination.classList.add('hide');
+}
+function showShoppingList() {
+  refs.emptyBox.classList.add('hide');
+  refs.shoppingBox.classList.remove('hide');
+  refs.pagination.classList.remove('hide');
 }
