@@ -78,7 +78,7 @@ async function renderMarkupBook(category, cardSetEl) {
     const markupBook = data
       .map(({ book_image, title, author, _id }) => {
         return `<li class="card-set-item" data-id="${_id}">
-	 <button class="card-set-btn" type="button"><span class="wrapper-img"><img class="card-set-img" src="${book_image}" alt="book" loading="lazy"></span>
+	 <button class="card-set-btn" type="button"><span class="wrapper-img"><img class="card-set-img" src="${book_image}" alt="${title}" loading="lazy"></span>
 	  <h4 class="card-set-book-title ellipsis">${title}</h4>
 	  <p class="card-set-author ellipsis">${author}</p></button></li>`;
       })
