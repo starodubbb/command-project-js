@@ -1,0 +1,445 @@
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.19;
+  letter-spacing: -1.28px;
+
+  margin-bottom: 120px;
+}
+@media only screen and (min-width: 768px) {
+  .title {
+    margin-bottom: 140px;
+  }
+}
+
+.title-word {
+  color: #4f2ee8;
+}
+
+.empty-shopping-list {
+  width: 265px;
+  margin: 0 auto;
+  margin-top: 120px;
+}
+@media only screen and (min-width: 768px) {
+  .empty-shopping-list {
+    margin-top: 140px;
+    width: 349px;
+  }
+}
+
+.empty-shopping-list-desc {
+  display: block;
+  max-width: 244px;
+  margin: 0 auto;
+  margin-bottom: 14px;
+
+  line-height: 1.29;
+  letter-spacing: -0.28px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+}
+@media only screen and (min-width: 768px) {
+  .empty-shopping-list-desc {
+    max-width: 349px;
+    margin-bottom: 20px;
+
+    font-size: 18px;
+
+    line-height: 1.33;
+    letter-spacing: -0.36px;
+  }
+}
+
+.dark .empty-shopping-list-desc {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.empty-shopping-list-bg-image {
+  background-color: transparent;
+  background-image: url(../img/shop-list/empty-shop-list_mob@1x.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  height: 198px;
+}
+@media only screen and (max-width: 375px) and (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .empty-shopping-list-bg-image {
+    background-image: url('../img/shop-list/empty-shop-list_mob@2x.png');
+  }
+}
+@media only screen and (min-width: 375px) {
+  .empty-shopping-list-bg-image {
+    background-image: url('../img/shop-list/empty-shop-list_tab@1x.png');
+
+    height: 241px;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .empty-shopping-list-bg-image {
+      background-image: url('../img/shop-list/empty-shop-list_tab@2x.png');
+    }
+  }
+}
+
+/**
+  |============================
+  | Hide elements
+  |============================
+*/
+.empty-shopping-list.hide,
+.shopping-list.hide,
+.pagination.hide {
+  display: none;
+}
+
+@media only screen and (max-width: 1439px) {
+  body[data-page='shopping-list'] .sidebar-support-wrapper {
+    display: none;
+  }
+}
+body[data-page='shopping-list'] .section {
+  padding-bottom: 40px;
+}
+/**
+  |============================
+  | SHOPPING CARD
+  |============================
+*/
+.shopping-list-part {
+  width: 100%;
+}
+
+.shopping-list {
+  margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .shopping-list {
+    margin-bottom: 40px;
+  }
+}
+.item-card + .item-card {
+  margin-top: 20px;
+}
+
+.shopping-card {
+  position: relative;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+
+  width: 100%;
+  height: 170px;
+  padding: 14px;
+
+  border-radius: 16px;
+  border: 2px solid #4f2ee866;
+  background-color: var(--header-cl);
+}
+@media only screen and (min-width: 768px) {
+  .shopping-card {
+    height: 213px;
+    padding: 24px;
+
+    gap: 24px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .shopping-card {
+  }
+}
+
+.card-book-images {
+  width: 100px;
+  height: 142px;
+
+  flex-shrink: 0;
+
+  border-radius: 8px;
+  overflow: hidden;
+}
+@media only screen and (min-width: 768px) {
+  .card-book-images {
+    width: 116px;
+    height: 165px;
+  }
+}
+
+.card-info {
+  width: 100%;
+}
+@media only screen and (min-width: 768px) {
+  .card-info {
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .card-info {
+  }
+}
+
+.card-book-title.ellipsis,
+.card-book-categories.ellipsis {
+  width: 160px;
+}
+.card-book-desc.ellipsis {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  white-space: normal;
+}
+.card-book-author.ellipsis {
+  width: 100px;
+}
+
+@media only screen and (min-width: 768px) {
+  .card-book-title.ellipsis,
+  .card-book-categories.ellipsis {
+    width: 480px;
+  }
+  .card-book-desc.ellipsis {
+    -webkit-line-clamp: 3;
+  }
+  .card-book-author.ellipsis {
+    width: 370px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .card-book-title.ellipsis,
+  .card-book-categories.ellipsis {
+    width: 770px;
+  }
+  .card-book-author.ellipsis {
+    width: 660px;
+  }
+}
+
+.card-book-title {
+  font-size: 16px;
+  font-weight: 700;
+
+  line-height: 1.13;
+  letter-spacing: -0.64px;
+  text-transform: uppercase;
+
+  margin-bottom: 4px;
+}
+
+.card-book-categories {
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.17;
+  letter-spacing: 0.36px;
+
+  margin-bottom: 8px;
+
+  color: var(--secondary-txt-cl);
+}
+@media only screen and (min-width: 768px) {
+  .card-book-categories {
+    margin-bottom: 14px;
+  }
+}
+
+.card-book-desc {
+  height: 56px;
+
+  line-height: 1.29;
+  letter-spacing: -0.56px;
+  text-overflow: ellipsis;
+  margin-bottom: 24px;
+}
+@media only screen and (min-width: 768px) {
+  .card-book-desc {
+    height: 53px;
+    margin-bottom: 32px;
+  }
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media only screen and (min-width: 768px) {
+  .card-footer {
+    align-items: baseline;
+  }
+}
+
+.card-book-author {
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+
+  line-height: 1.17;
+  letter-spacing: -0.48px;
+
+  color: #b4afaf;
+}
+
+.card-book-shops {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+@media only screen and (min-width: 768px) {
+  .card-book-shops {
+    gap: 16px;
+  }
+}
+
+.shop-icon {
+  filter: grayscale(100%);
+  transition: filter var(--anim-active);
+}
+
+.shop-link:hover .shop-icon {
+  /* filter: grayscale(100%) drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.35)); */
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.35));
+}
+
+.dark .shop-link:hover .shop-icon {
+  filter: drop-shadow(0px 3px 3px rgba(255, 255, 255, 0.35));
+}
+
+.dark .amazon {
+  filter: brightness(0) invert(1);
+  transition: filter var(--anim-active);
+}
+
+.remove-card {
+  position: absolute;
+  display: flex;
+  top: 14px;
+  right: 14px;
+  padding: 6px;
+  border: 0;
+  background-color: #4f2ee8;
+}
+.remove-card .icon-removed {
+  stroke: #fff;
+  width: 16px;
+  height: 16px;
+  transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.remove-card:hover .icon-removed,
+.remove-card:focus .icon-removed {
+  stroke: #eac645;
+}
+
+@media only screen and (min-width: 768px) {
+  .remove-card {
+    top: 24px;
+    right: 24px;
+    padding: 8px;
+  }
+  .icon-removed {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media only screen and (max-width: 374px) {
+  .shopping-card {
+    padding-left: 7px;
+    padding-right: 7px;
+    gap: 7px;
+  }
+  .remove-card {
+    top: 7px;
+    right: 7px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .card-book-title.ellipsis {
+    width: 130px;
+  }
+}
+
+/**
+  |============================
+  | PAGINATION
+  |============================
+*/
+
+.pagination {
+  justify-content: center;
+  display: flex;
+  gap: 8px;
+}
+
+.pag-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background-color: var(--light-bg-cl);
+  color: var(--light-theme-main-txt-cl);
+  border: 1px solid var(--light-theme-main-txt-cl);
+
+  font-family: DM Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.22;
+}
+.pag-back-btn {
+  background-color: #111;
+  color: #b4afaf;
+  border: transparent;
+}
+.pag-next-btn {
+  background-color: #eac645;
+  color: #111;
+  border: transparent;
+}
+.pad-btn-active {
+  color: var(--header-cl);
+  background-color: var(--light-theme-main-txt-cl);
+}
+.pag-btn svg {
+  fill: currentColor;
+}
+.pag-ellip-sym {
+  align-self: flex-end;
+  padding-bottom: 9px;
+}
+.pag-page-link {
+}
+.pag-prev-single-arrow {
+  margin-right: 6px;
+  margin-left: -3px;
+}
+.pag-next-single-arrow {
+  margin-right: -3px;
+  margin-left: 6px;
+}
+
+@media only screen and (min-width: 768px) {
+  .pagination {
+    gap: 10px;
+  }
+  .pag-btn {
+    width: 44px;
+    height: 44px;
+  }
+  .pag-prev-single-arrow {
+    margin-right: 14px;
+    margin-left: -2px;
+  }
+  .pag-next-single-arrow {
+    margin-right: -2px;
+    margin-left: 14px;
+  }
+}
