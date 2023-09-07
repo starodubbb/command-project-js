@@ -103,6 +103,9 @@
     display: none;
   }
 }
+body[data-page='shopping-list'] .section {
+  padding-bottom: 40px;
+}
 /**
   |============================
   | SHOPPING CARD
