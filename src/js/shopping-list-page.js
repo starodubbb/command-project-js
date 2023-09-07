@@ -6,7 +6,6 @@ import './service-api.js';
 import './service-pagination-api.js';
 
 import Pagination from 'tui-pagination';
-// import 'tui-pagination/dist/tui-pagination.css';
 import { setActivePage } from './various-functions.js';
 
 import amazon_mob_1x from '../img/shop-list/amazon-shop_mob@1x.png';
@@ -255,21 +254,6 @@ function initPagination(totalItems) {
     },
   });
 
-  // page: '<a href="#" class="tui-page-btn page">{{page}}</a>',
-  //     currentPage:
-  //       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-  //     moveButton:
-  //       '<a href="#" class="tui-page-btn tui-{{type}}">' +
-  //       '<span class="tui-ico-{{type}}">{{type}}</span>' +
-  //       '</a>',
-  //     disabledMoveButton:
-  //       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-  //       '<span class="tui-ico-{{type}}">{{type}}</span>' +
-  //       '</span>',
-  //     moreButton:
-  //       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-  //       '<span class="tui-ico-ellip">...</span>' +
-  //       '</a>',
   pagination.on('afterMove', eventData => {
     currentPage = eventData.page;
     const storageData = JSON.parse(localStorage.getItem(LS_KEY));
