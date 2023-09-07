@@ -88,12 +88,19 @@
 
 @media screen and (max-width: 768px) {
   .mobile-menu {
+    background-position: 0 50vh, 0 0;
+    background-size: 100%, 100%;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .mobile-menu {
     background-position: 0 100%, 0 0;
     background-size: 100%, 100%;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (min-height: 1000px) {
   .mobile-menu {
     background-position: 0 100%, 0 0;
     background-size: 100%, 100%;
